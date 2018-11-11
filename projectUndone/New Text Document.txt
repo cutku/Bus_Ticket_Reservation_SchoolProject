@@ -1,0 +1,6 @@
+consumer table: consumer contains email, ssn, gsm, sex, name, surname, dateOfBorn, consumer password, ticket count and freeze which shows account is active or disactive.
+admin table: admin table contains email, ssn , name, surname, gsm and password.
+guest table:guest contains email, ssn, name, surname, sex, gsm and dateOfBorn.
+manager table: manager contains email, ssn, name, surname, gsm and password.
+trip table: Trip table contains busId, arrivalDestination, departureDestination and capacity which coming from bus id.
+payment table: Payment is protected it can't reachable from other clas. Payment contains creditCardNumber, cvc, expDate, paymentName, paymentSurname which same as credit card information.
