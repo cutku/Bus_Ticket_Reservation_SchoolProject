@@ -1,0 +1,7 @@
+1.	Bruegge B. & Dutoit A.H.. (2010). Object-Oriented Software Engineering Using UML, Patterns, and Java, Prentice Hall, 3rd ed.
+
+2.	Lecture presentations of the course (the presentations were provided by the Instructor who is Emine Ekin).
+
+3. 	About application design: https://www.kamilkoc.com.tr/, https://www.pamukkale.com.tr/ 
+
+4.	We lookup other porjects from: www.github.com, www.researchgate.net
