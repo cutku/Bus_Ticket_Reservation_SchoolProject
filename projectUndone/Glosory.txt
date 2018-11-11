@@ -5,4 +5,4 @@ manager table:
 payment rejected: consumer enters his credit card credentials wrong or card limit out of balance.
 trip table: busId which is generated randomly,departure_destination,arrival_destination,capacity
 payment table:
-ticket table:
+ticket table:ticketId which is genarated randomly,ticketCost
