@@ -1,6 +1,6 @@
-consumer table:
-admin table:
-guest table:
+consumer table: consumer contains email, ssn, gsm, sex, name, surname, dateOfBorn, consumer password, ticket count and freeze which shows account is active or disactive:
+admin table: admin table contains email, ssn , name, surname, gsm and password
+guest table:guest contains email, ssn, name, surname, sex, gsm and dateOfBorn
 manager table:
 trip table:
 payment table:
