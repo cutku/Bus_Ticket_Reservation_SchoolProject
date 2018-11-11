@@ -3,3 +3,5 @@ admin table:
 guest table:
 manager table:
 trip table:
+payment table:
+ticket table:
