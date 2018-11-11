@@ -2,6 +2,7 @@ consumer table: consumer contains email, ssn, gsm, sex, name, surname, dateOfBor
 admin table: admin table contains email, ssn , name, surname, gsm and password
 guest table:guest contains email, ssn, name, surname, sex, gsm and dateOfBorn
 manager table:
-trip table:
+payment rejected: consumer enters his credit card credentials wrong or card limit out of balance.
+trip table: busId which is generated randomly,departure_destination,arrival_destination,capacity
 payment table:
 ticket table:
