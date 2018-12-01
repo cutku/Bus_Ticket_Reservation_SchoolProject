@@ -1,3 +1,6 @@
-Login
-Payment
-Update user info
+Login:Provides for any user enter the application with their own account.
+Login needs e-mail and password. 
+Payment:Provides system for paymet successed or not so system
+can create ticket for customer or guest. 
+Update user info: Provides services for admin to change user profile
+from admin account.
