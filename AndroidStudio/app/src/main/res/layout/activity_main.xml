@@ -4,6 +4,87 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    android:background="@android:color/holo_blue_light"
+    tools:context=".MainActivity"
+    tools:layout_editor_absoluteY="81dp">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="180dp"
+        android:layout_height="123dp"
+        app:srcCompat="@drawable/icon"
+        tools:layout_editor_absoluteX="115dp"
+        tools:layout_editor_absoluteY="27dp" />
+
+    <Button
+        android:id="@+id/button_continueGuest"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:background="@android:color/black"
+        android:text="CONTINUE AS A GUEST"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="513dp" />
+
+    <Button
+        android:id="@+id/button_signup"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:background="@android:color/black"
+        android:text="SIGN UP"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="440dp" />
+
+    <Button
+        android:id="@+id/button_signin"
+        android:layout_width="270dp"
+        android:layout_height="50dp"
+        android:background="@android:color/holo_green_light"
+        android:text="SIGN IN"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="339dp" />
+
+    <EditText
+        android:id="@+id/editText_password"
+        android:layout_width="280"
+        android:layout_height="50"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:text="  Password"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="264dp" />
+
+    <EditText
+        android:id="@+id/editText_email"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:text="  Email Address"
+        tools:layout_editor_absoluteX="65dp"
+        tools:layout_editor_absoluteY="181dp" />
+
+    <ImageView
+        android:id="@+id/mail_icon"
+        android:layout_width="33dp"
+        android:layout_height="33"
+        android:background="@android:color/holo_blue_dark"
+        android:elevation="0dp"
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        tools:layout_editor_absoluteX="303dp"
+        tools:layout_editor_absoluteY="188dp" />
+
+    <ImageView
+        android:id="@+id/imageView4"
+        android:layout_width="33"
+        android:layout_height="33"
+        android:background="@android:color/holo_blue_light"
+        app:srcCompat="@android:drawable/ic_lock_idle_lock"
+        tools:layout_editor_absoluteX="303dp"
+        tools:layout_editor_absoluteY="271dp" />
 
 </android.support.constraint.ConstraintLayout>
