@@ -48,8 +48,8 @@
 
     <EditText
         android:id="@+id/editText_password"
-        android:layout_width="280"
-        android:layout_height="50"
+        android:layout_width="280dp"
+        android:layout_height="50dp"
         android:background="@android:color/white"
         android:ems="10"
         android:inputType="textPassword"
@@ -70,8 +70,8 @@
 
     <ImageView
         android:id="@+id/mail_icon"
-        android:layout_width="33dp"
-        android:layout_height="33"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="@android:color/holo_blue_dark"
         android:elevation="0dp"
         app:srcCompat="@android:drawable/ic_dialog_email"
@@ -80,11 +80,21 @@
 
     <ImageView
         android:id="@+id/imageView4"
-        android:layout_width="33"
-        android:layout_height="33"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:background="@android:color/holo_blue_light"
         app:srcCompat="@android:drawable/ic_lock_idle_lock"
         tools:layout_editor_absoluteX="303dp"
         tools:layout_editor_absoluteY="271dp" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="43dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="OR"
+        tools:layout_editor_absoluteX="184dp"
+        tools:layout_editor_absoluteY="395dp" />
 
 </android.support.constraint.ConstraintLayout>
