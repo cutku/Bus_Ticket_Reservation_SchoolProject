@@ -46,6 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
     }
 
     public void signIn (View view) {
+
         ParseUser.logInInBackground(emailText.getText().toString(), passwordText.getText().toString(), new LogInCallback() {
             @Override
             public void done(ParseUser user, ParseException e) {
@@ -58,6 +59,12 @@ public class SignUpActivity extends AppCompatActivity {
                     int userType = user.getInt("userType");
 
 
+                    //intent This will be delete
+                    Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
+                    startActivity(intent);
+
+//this area will come after all functions done
+/*
                     if (userType == 0){
                         //intent
                         Intent intent = new Intent(getApplicationContext(),CustomerActivity.class);
@@ -83,7 +90,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     }
 
-
+*/
 
                     }
 

@@ -6,10 +6,11 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.parse.LogOutCallback;
-import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
 
@@ -25,30 +26,36 @@ public class AdminActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (item.getItemId() == R.id.Update_User_Info){
-            //intent
-        }else if (item.getItemId()== R.id.Logout){
+        if( item.getItemId() == R.id.Logout){
             ParseUser.logOutInBackground(new LogOutCallback() {
                 @Override
                 public void done(ParseException e) {
-                    if(e != null) {
+                    if (e != null){
                         Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                     }else{
                         Intent intent = new Intent(getApplicationContext(),SignUpActivity.class);
                         startActivity(intent);
-                        }
                     }
+                }
             });
         }
 
 
+
         return super.onOptionsItemSelected(item);
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager);
+        setContentView(R.layout.activity_admin);
+    }
+
+    public void addManager(View view){
+
+            //go addManager page
+            Intent intent = new Intent(getApplicationContext(),AddManagerActivity.class);
+            startActivity(intent);
     }
 }

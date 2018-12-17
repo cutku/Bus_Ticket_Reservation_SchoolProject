@@ -18,6 +18,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AdminActivity"></activity>
+        <activity android:name=".AddManagerActivity"></activity>
     </application>
 
 </manifest>
