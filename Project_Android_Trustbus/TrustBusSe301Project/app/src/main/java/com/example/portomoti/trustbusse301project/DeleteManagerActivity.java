@@ -1,11 +1,16 @@
 package com.example.portomoti.trustbusse301project;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
 import com.parse.ParseException;
@@ -32,29 +37,83 @@ public class DeleteManagerActivity extends AppCompatActivity {
 
 
     public void deleteManager(View view){
-
-        final ParseQuery<ParseObject> query = ParseQuery.getQuery("User");
-        query.whereEqualTo("email", managerEmail);
-
-
-        query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if (e != null) {
-                    e.printStackTrace();
-                } else {
-                    if (objects.size() > 0) {
-                        for (ParseObject object : objects) {
-                            String objectName = object.getString("username");
-                            String objectCalories = object.getString("userSurname");
-
-                            System.out.println("object name: " + objectName);
-                            System.out.println("object calories" + objectCalories);
+        final ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("email", "umut@gmail.com");
+        query.findInBackground(new FindCallback<ParseUser>() {
+            public void done(final List<ParseUser> objects, ParseException e) {
+                //Toast.makeText(getApplicationContext(), "2!", Toast.LENGTH_LONG).show();
+                if (e == null) {
+                    ParseUser.deleteAllInBackground(objects, new DeleteCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            String firstItemId = objects.get(0).getObjectId();
+                            Toast.makeText(DeleteManagerActivity.this, firstItemId , Toast.LENGTH_SHORT).show();
                         }
-                    }
+                    });
+
+
+                    //  Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();
+
+
+
+                }
+                    // The query was successful.
+                 else {
+                    // Something went wrong.
+                    Toast.makeText(getApplicationContext(), "Not!", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
+
+
+
+
+
+
+
+
+
+/*
+        final ParseQuery<ParseUser> query = ParseUser.getQuery();
+        //ParseUser user = new ParseUser();
+        query.whereEqualTo("email", "umut@gmail.com");
+        query.findInBackground(new FindCallback<ParseUser>() {
+            @Override
+            public void done(List<ParseUser> results, ParseException e) {
+                   if (e == null) {
+                       String firstItemId = results.get(0).getObjectId();
+                       Toast.makeText(DeleteManagerActivity.this, firstItemId , Toast.LENGTH_SHORT).show();
+
+                      //  for (ParseUser reply : results){
+                  //      reply.deleteInBackground();
+                  //      Toast.makeText(getApplicationContext(), "Deleted2!", Toast.LENGTH_LONG).show();
+                 //  }
+
+                 //   Toast.makeText(getApplicationContext(), "Deleted!", Toast.LENGTH_LONG).show();
+                  //  Intent intent =new Intent(getApplicationContext(), AdminActivity.class);
+                  //  startActivity(intent);
+                 //   finish();
+
+
+                }
+             else {
+                    Toast.makeText(getApplicationContext(), "Not deleted!", Toast.LENGTH_LONG).show();
+                    e.printStackTrace();
+
+                        //for (ParseObject object : objects) {
+
+                        //    object.deleteInBackground();
+                            /*
+                            String objectName = object.getString("username");
+                            String objectCalories = object.getString("userSurname");
+                            System.out.println("object name: " + objectName);
+                            System.out.println("object calories" + objectCalories);
+                            */
+                        //}
+       //         }
+     //       }
+   //     });
 
         }
     }
