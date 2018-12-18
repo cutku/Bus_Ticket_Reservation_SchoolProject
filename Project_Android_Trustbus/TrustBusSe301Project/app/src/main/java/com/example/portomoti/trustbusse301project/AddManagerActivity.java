@@ -32,7 +32,7 @@ public class AddManagerActivity  extends AppCompatActivity {
         managerSsn = findViewById(R.id.addManagerActivitySsnText);
         managerGsm = findViewById(R.id.addManagerActivityGsmText);
 
-        ParseUser parseUser = ParseUser.getCurrentUser();
+        //ParseUser parseUser = ParseUser.getCurrentUser();
 
     }
 

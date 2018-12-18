@@ -58,4 +58,11 @@ public class AdminActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(),AddManagerActivity.class);
             startActivity(intent);
     }
+
+    public void deleteManager(View view){
+
+        //go addManager page
+        Intent intent = new Intent(getApplicationContext(),DeleteManagerActivity.class);
+        startActivity(intent);
+    }
 }

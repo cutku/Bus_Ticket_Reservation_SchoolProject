@@ -19,6 +19,7 @@
         </activity>
         <activity android:name=".AdminActivity"></activity>
         <activity android:name=".AddManagerActivity"></activity>
+        <activity android:name=".DeleteManagerActivity"></activity>
     </application>
 
 </manifest>

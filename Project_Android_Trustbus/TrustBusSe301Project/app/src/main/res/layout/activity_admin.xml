@@ -23,6 +23,7 @@
         android:layout_width="212dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="10dp"
+        android:onClick="deleteManager"
         android:text="Delete Manager"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,5 +51,6 @@
         app:layout_constraintBottom_toTopOf="@+id/activityAdminAddManagerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 </android.support.constraint.ConstraintLayout>
