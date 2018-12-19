@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.parse.FindCallback;
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
@@ -19,6 +20,7 @@ import java.util.List;
 public class SignUpActivity extends AppCompatActivity {
 
     EditText usernameText, emailText, passwordText;
+    boolean freeze;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,36 +36,68 @@ public class SignUpActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.signupActivityPasswordText);
 
 
-        //Remember User
-        ParseUser parseUser = ParseUser.getCurrentUser();
 
-        if (parseUser!= null){
-            Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
-            startActivity(intent);
-        }
+
+            //Remember User
+            ParseUser parseUser = ParseUser.getCurrentUser();
+
+            if (parseUser!= null){
+                Toast.makeText(getApplicationContext(), "User Logged-In Automaticly", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
+                startActivity(intent);
+            }
+
+
 
 
     }
 
     public void signIn (View view) {
 
-        ParseUser.logInInBackground(emailText.getText().toString(), passwordText.getText().toString(), new LogInCallback() {
+        final ParseQuery<ParseUser> query = ParseUser.getQuery();
+        query.whereEqualTo("email",emailText.getText().toString());
+        query.findInBackground(new FindCallback<ParseUser>() {
             @Override
-            public void done(ParseUser user, ParseException e) {
-                if (e != null){
+            public void done(List<ParseUser> objects, ParseException e) {
+                if (e==null){
+                    if (objects.size()>0) {
+                        freeze = objects.get(0).getBoolean("freeze");
+                    }
+                }else{
+
                     Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                   //Toast.makeText(getApplicationContext(), "User Freezed", Toast.LENGTH_LONG).show();
+                   // e.printStackTrace();
+
                 }
-                else {
-                    Toast.makeText(getApplicationContext(), "Welcome" + user.getUsername(), Toast.LENGTH_LONG).show();
-
-                    int userType = user.getInt("userType");
+            }
+        });
 
 
-                    //intent This will be delete
-                    Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
-                    startActivity(intent);
+                ParseUser.logInInBackground(emailText.getText().toString(), passwordText.getText().toString(), new LogInCallback() {
+                    @Override
+                    public void done(ParseUser user, ParseException e) {
+                        if (e != null) {
+                            Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                        } else {
 
-//this area will come after all functions done
+
+                            if (freeze==true){
+                                Toast.makeText(getApplicationContext(), "User Freezed", Toast.LENGTH_LONG).show();
+                                ParseUser.getCurrentUser().logOut();
+                                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                                startActivity(intent);
+                            }
+                            else {
+                                Toast.makeText(getApplicationContext(), "Welcome" + user.getUsername(), Toast.LENGTH_LONG).show();
+
+                                int userType = user.getInt("userType");
+
+                                //intent This will be delete
+                                Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                                startActivity(intent);
+                                //this area will come after all functions done
+
 /*
                     if (userType == 0){
                         //intent
@@ -92,14 +126,19 @@ public class SignUpActivity extends AppCompatActivity {
 
 */
 
+                            }
+
+
+
+                        }
+
+
                     }
+                });
 
 
-                }
+         }
 
-        });
-
-    }
 
     public void signUp(View view) {
         ParseUser user = new ParseUser();
@@ -107,6 +146,7 @@ public class SignUpActivity extends AppCompatActivity {
         user.setUsername(usernameText.getText().toString());
         user.setEmail(emailText.getText().toString());
         user.setPassword(passwordText.getText().toString());
+        user.put("freeze", false);
 
         user.signUpInBackground(new SignUpCallback() {
             @Override

@@ -52,6 +52,7 @@ public class DeleteManagerActivity extends AppCompatActivity {
                     });
 
 
+
                     //  Toast.makeText(getApplicationContext(), "OK!", Toast.LENGTH_LONG).show();
 
 

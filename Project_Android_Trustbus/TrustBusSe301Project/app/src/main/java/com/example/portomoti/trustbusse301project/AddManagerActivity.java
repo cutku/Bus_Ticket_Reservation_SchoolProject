@@ -50,6 +50,7 @@ public class AddManagerActivity  extends AppCompatActivity {
         user.setPassword(managerPassword.getText().toString());
         user.put("ssn" , managerSsn.getText().toString());
         user.put("gsm", managerGsm.getText().toString());
+        user.put("freeze", false);
         user.put("userType",2);
 
 
