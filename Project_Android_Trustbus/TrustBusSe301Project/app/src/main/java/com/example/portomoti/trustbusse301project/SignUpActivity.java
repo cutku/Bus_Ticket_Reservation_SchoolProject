@@ -59,6 +59,7 @@ public class SignUpActivity extends AppCompatActivity {
         query.findInBackground(new FindCallback<ParseUser>() {
             @Override
             public void done(List<ParseUser> objects, ParseException e) {
+
                 if (e==null){
                     if (objects.size()>0) {
                         freeze = objects.get(0).getBoolean("freeze");

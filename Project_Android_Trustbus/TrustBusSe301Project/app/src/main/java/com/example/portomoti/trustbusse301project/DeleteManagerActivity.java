@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.parse.DeleteCallback;
 import com.parse.FindCallback;
 import com.parse.GetCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -23,7 +24,7 @@ import java.util.List;
 public class DeleteManagerActivity extends AppCompatActivity {
 
     EditText managerEmail;
-
+    boolean freeze = true;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,16 +38,22 @@ public class DeleteManagerActivity extends AppCompatActivity {
 
 
     public void deleteManager(View view){
+
+
+
         final ParseQuery<ParseUser> query = ParseUser.getQuery();
-        query.whereEqualTo("email", "umut@gmail.com");
+        query.whereEqualTo("email", managerEmail.getText().toString());
         query.findInBackground(new FindCallback<ParseUser>() {
             public void done(final List<ParseUser> objects, ParseException e) {
-                //Toast.makeText(getApplicationContext(), "2!", Toast.LENGTH_LONG).show();
+                    //Toast.makeText(getApplicationContext(), "2!", Toast.LENGTH_LONG).show();
                 if (e == null) {
+
                     ParseUser.deleteAllInBackground(objects, new DeleteCallback() {
                         @Override
                         public void done(ParseException e) {
+
                             String firstItemId = objects.get(0).getObjectId();
+
                             Toast.makeText(DeleteManagerActivity.this, firstItemId , Toast.LENGTH_SHORT).show();
                         }
                     });
