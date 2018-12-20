@@ -19,7 +19,7 @@ import java.util.List;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText usernameText, emailText, passwordText;
+    EditText emailText, passwordText;
     boolean freeze;
 
     @Override
@@ -30,8 +30,6 @@ public class SignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-
-        usernameText= findViewById(R.id.signUpActivityNameText);
         emailText = findViewById(R.id.signUpActivityEmailText);
         passwordText = findViewById(R.id.signupActivityPasswordText);
 
@@ -143,6 +141,9 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void signUp(View view) {
+        Intent intent = new Intent(getApplicationContext(),SignUpSignUpActivity.class);
+        startActivity(intent);
+        /*
         ParseUser user = new ParseUser();
 
         user.setUsername(usernameText.getText().toString());
@@ -163,6 +164,10 @@ public class SignUpActivity extends AppCompatActivity {
                 }
             }
         });
-
+*/
+    }
+    public void asGuest(View view){
+        Intent intent = new Intent(getApplicationContext(),SignUpSignUpActivity.class);
+        startActivity(intent);
     }
 }

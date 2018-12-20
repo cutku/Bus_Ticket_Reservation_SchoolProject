@@ -7,14 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
-
-import java.util.Date;
 
 public class ManageAccountActivity extends AppCompatActivity {
 
@@ -30,10 +27,10 @@ public class ManageAccountActivity extends AppCompatActivity {
         setContentView(R.layout.activity_manage_account);
 
 
-        usernameText= findViewById(R.id.manageAccountActivityNameText);
-        surnameText = findViewById(R.id.manageAccountActivitySurnameText);
-        emailText = findViewById(R.id.manageAccountActivityEmailText);
-        dateofBirthText = findViewById(R.id.manageAccountActivityDateOfBirthText);
+        usernameText= findViewById(R.id.signUpSignUpActivityNameText);
+        surnameText = findViewById(R.id.signUpSignUpAccountActivitySurnameText);
+        emailText = findViewById(R.id.signUpSignUpAccountActivityEmailText);
+        dateofBirthText = findViewById(R.id.signUpSignUpAccountActivityDateOfBirthText);
         ssnText = findViewById(R.id.addManagerActivitySsnText);
         male = findViewById(R.id.managerAccountActivityMaleRadioButton);
         female = findViewById(R.id.managerAccountActivityFemaleRadioButton);
