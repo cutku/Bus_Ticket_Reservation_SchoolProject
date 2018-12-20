@@ -37,7 +37,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
 
-
+        /*
             //Remember User
             ParseUser parseUser = ParseUser.getCurrentUser();
 
@@ -46,7 +46,7 @@ public class SignUpActivity extends AppCompatActivity {
                 Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
                 startActivity(intent);
             }
-
+        */
 
 
 
@@ -93,13 +93,14 @@ public class SignUpActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), "Welcome" + user.getUsername(), Toast.LENGTH_LONG).show();
 
                                 int userType = user.getInt("userType");
-
+                                /*
                                 //intent This will be delete
                                 Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                                 startActivity(intent);
+                                */
                                 //this area will come after all functions done
 
-/*
+
                     if (userType == 0){
                         //intent
                         Intent intent = new Intent(getApplicationContext(),CustomerActivity.class);
@@ -125,7 +126,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     }
 
-*/
+
 
                             }
 
@@ -148,7 +149,7 @@ public class SignUpActivity extends AppCompatActivity {
         user.setEmail(emailText.getText().toString());
         user.setPassword(passwordText.getText().toString());
         user.put("freeze", false);
-
+        user.put("userType",0);
         user.signUpInBackground(new SignUpCallback() {
             @Override
             public void done(ParseException e) {

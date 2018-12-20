@@ -20,6 +20,10 @@
         <activity android:name=".AdminActivity"></activity>
         <activity android:name=".AddManagerActivity"></activity>
         <activity android:name=".DeleteManagerActivity"></activity>
+        <activity android:name=".CustomerActivity"></activity>
+        <activity android:name=".ManageAccountActivity"></activity>
+        <activity android:name=".ListMyTicketsActivity"></activity>
+        <activity android:name=".ListTripsActivity"></activity>
     </application>
 
 </manifest>
