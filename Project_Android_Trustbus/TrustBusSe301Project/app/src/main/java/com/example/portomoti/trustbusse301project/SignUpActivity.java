@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ public class SignUpActivity extends AppCompatActivity {
 
     EditText emailText, passwordText;
     boolean freeze;
+    CheckBox aautologin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,25 +34,56 @@ public class SignUpActivity extends AppCompatActivity {
 
         emailText = findViewById(R.id.signUpActivityEmailText);
         passwordText = findViewById(R.id.signupActivityPasswordText);
+        aautologin = findViewById(R.id.signUpActivityAutoLoginCheckBox);
 
 
 
-        /*
             //Remember User
             ParseUser parseUser = ParseUser.getCurrentUser();
 
-            if (parseUser!= null){
-                Toast.makeText(getApplicationContext(), "User Logged-In Automaticly", Toast.LENGTH_LONG).show();
-                Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
-                startActivity(intent);
+
+
+           // boolean booleanAuto = true;//parseUser.getBoolean("autologin");
+
+            if (parseUser!= null) {
+                boolean booleanauto= parseUser.getBoolean("autologin");
+                int userType = parseUser.getInt("userType");
+                if (userType == 0 && booleanauto==true )  {
+                    Toast.makeText(getApplicationContext(), "User Logged-In Automaticly", Toast.LENGTH_LONG).show();
+                    //intent
+                    Intent intent = new Intent(getApplicationContext(), CustomerActivity.class);
+                    startActivity(intent);
+
+                }
+                if (userType == 1&& booleanauto==true) {
+                    Toast.makeText(getApplicationContext(), "User Logged-In Automaticly", Toast.LENGTH_LONG).show();
+                    //intent
+                    Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                    startActivity(intent);
+
+                }
+                if (userType == 2&& booleanauto==true) {
+                    Toast.makeText(getApplicationContext(), "User Logged-In Automaticly", Toast.LENGTH_LONG).show();
+                    //intent
+                    Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Please Check For Autologin", Toast.LENGTH_LONG).show();
+                }
             }
-        */
+
+
+
 
 
 
     }
 
     public void signIn (View view) {
+
+
+
 
         final ParseQuery<ParseUser> query = ParseUser.getQuery();
         query.whereEqualTo("email",emailText.getText().toString());
@@ -88,9 +121,20 @@ public class SignUpActivity extends AppCompatActivity {
                                 startActivity(intent);
                             }
                             else {
-                                Toast.makeText(getApplicationContext(), "Welcome" + user.getUsername(), Toast.LENGTH_LONG).show();
+                                //check autologin
+                                ParseUser usr = ParseUser.getCurrentUser();
+                                if(aautologin.isChecked()){
+                                    usr.put("autologin",true);
+                                }else{
+                                    usr.put("autologin",false);
+                                }
+                                usr.saveInBackground();
+
+
+                                Toast.makeText(getApplicationContext(), "Welcome " + user.getUsername(), Toast.LENGTH_LONG).show();
 
                                 int userType = user.getInt("userType");
+
                                 /*
                                 //intent This will be delete
                                 Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
@@ -100,6 +144,7 @@ public class SignUpActivity extends AppCompatActivity {
 
 
                     if (userType == 0){
+
                         //intent
                         Intent intent = new Intent(getApplicationContext(),CustomerActivity.class);
                         startActivity(intent);
@@ -118,6 +163,7 @@ public class SignUpActivity extends AppCompatActivity {
 
                     }
                     else{
+
                         //intent
                         Intent intent = new Intent(getApplicationContext(),CustomerActivity.class);
                         startActivity(intent);
@@ -141,8 +187,11 @@ public class SignUpActivity extends AppCompatActivity {
 
 
     public void signUp(View view) {
+
+
         Intent intent = new Intent(getApplicationContext(),SignUpSignUpActivity.class);
         startActivity(intent);
+
         /*
         ParseUser user = new ParseUser();
 
@@ -165,6 +214,7 @@ public class SignUpActivity extends AppCompatActivity {
             }
         });
 */
+
     }
     public void asGuest(View view){
         Intent intent = new Intent(getApplicationContext(),SignUpSignUpActivity.class);

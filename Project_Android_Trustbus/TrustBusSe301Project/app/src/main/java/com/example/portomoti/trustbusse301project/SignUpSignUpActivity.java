@@ -65,7 +65,6 @@ public class SignUpSignUpActivity extends AppCompatActivity {
         user.setEmail(emailText.getText().toString());
         user.setPassword(passwordText.getText().toString());
         user.put("userSurname", surnameText.getText().toString());
-
         user.put("freeze", false);
         user.put("userType", 0);
 
