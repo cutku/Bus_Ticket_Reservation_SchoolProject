@@ -10,11 +10,12 @@
         android:id="@+id/signUpSignUpAccountActivitySurnameText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="14dp"
         android:layout_marginEnd="66dp"
+        android:layout_marginBottom="21dp"
         android:ems="10"
         android:hint="Surname"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/signUpSignUpAccountActivityEmailText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/signUpSignUpActivityNameText"
         app:layout_constraintTop_toBottomOf="@+id/textView4" />
@@ -24,7 +25,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="7dp"
+        android:layout_marginBottom="14dp"
         android:text="Manage Account"
+        app:layout_constraintBottom_toTopOf="@+id/signUpSignUpAccountActivitySurnameText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -47,14 +50,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="59dp"
-        android:layout_marginTop="22dp"
         android:layout_marginEnd="59dp"
+        android:layout_marginBottom="10dp"
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/managerAccountActivityRadioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpSignUpActivityNameText" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpSignUpAccountActivitySurnameText" />
 
     <EditText
         android:id="@+id/signUpSignUpAccountActivityDateOfBirthText"
@@ -75,46 +79,49 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="30dp"
         android:layout_marginEnd="56dp"
+        android:layout_marginBottom="24dp"
         android:ems="10"
         android:hint="SSN"
         android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/manageAccountActivityPasswordText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpSignUpAccountActivityDateOfBirthText" />
+        app:layout_constraintTop_toBottomOf="@+id/managerAccountActivityRadioGroup" />
 
     <EditText
         android:id="@+id/manageAccountActivityPasswordText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="56dp"
-        android:layout_marginTop="25dp"
         android:layout_marginEnd="56dp"
+        android:layout_marginBottom="37dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/activityManageAccountFreezeSwitch"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUpSignUpAccountActivitySSNText" />
 
     <Button
         android:id="@+id/manageAccountActivitySaveChangesButton"
-        android:layout_width="170dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="49dp"
+        android:layout_marginEnd="55dp"
         android:onClick="saveChanges"
         android:text="Save Changes"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/activityManageAccountFreezeSwitch"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toEndOf="@+id/activityManageAccountFreezeSwitch" />
 
     <RadioGroup
         android:id="@+id/managerAccountActivityRadioGroup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:layout_marginEnd="60dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintBottom_toTopOf="@+id/signUpSignUpAccountActivitySSNText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/signUpSignUpAccountActivityDateOfBirthText"
         app:layout_constraintTop_toBottomOf="@+id/signUpSignUpAccountActivityEmailText">
@@ -135,6 +142,19 @@
             tools:layout_editor_absoluteX="59dp"
             tools:layout_editor_absoluteY="231dp" />
     </RadioGroup>
+
+    <Switch
+        android:id="@+id/activityManageAccountFreezeSwitch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="56dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="52dp"
+        android:text="Freeze Account"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/manageAccountActivitySaveChangesButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manageAccountActivityPasswordText" />
 
 
 </android.support.constraint.ConstraintLayout>

@@ -5,8 +5,10 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.parse.ParseException;
@@ -17,6 +19,7 @@ public class ManageAccountActivity extends AppCompatActivity {
 
     EditText usernameText, surnameText, emailText, passwordText ,dateofBirthText, ssnText  ;
     RadioButton male, female;
+    Switch freezeSwitch;
     boolean freeze;
 
     @Override
@@ -35,6 +38,7 @@ public class ManageAccountActivity extends AppCompatActivity {
         male = findViewById(R.id.managerAccountActivityMaleRadioButton);
         female = findViewById(R.id.managerAccountActivityFemaleRadioButton);
         passwordText = findViewById(R.id.manageAccountActivityPasswordText);
+        freezeSwitch = findViewById(R.id.activityManageAccountFreezeSwitch);
     }
 
 
@@ -54,15 +58,19 @@ public class ManageAccountActivity extends AppCompatActivity {
         if (emailText != null) {
             user.setEmail(emailText.getText().toString());
         }
+        if (freezeSwitch.isChecked()==true){
+            user.put("freeze" , true);
+        }
+
         /*
         if (dateofBirthText != null){
             user.put("dateOfBirth",dateofBirthText.getText());
         }
         */
-        if (male != null){
+        if (male.isChecked() == true){
             user.put("sex","Male");
         }
-        if ((female!=null)){
+        if ((female.isChecked() == true)){
             user.put("sex","Female");
         }
 
