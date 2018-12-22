@@ -17,8 +17,8 @@ android {
         }
     }
 }
-ext{
-    parseVersion= "1.17.3"
+ext {
+    parseVersion = "1.17.3"
 
 }
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UploadActivity">
+
+    <EditText
+        android:id="@+id/upload_activity_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="35dp"
+        android:ems="10"
+        android:hint="Date"
+        android:inputType="datetime"
+        app:layout_constraintStart_toStartOf="@+id/upload_activity_where"
+        app:layout_constraintTop_toBottomOf="@+id/upload_activity_where" />
+
+    <EditText
+        android:id="@+id/upload_activity_from"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="62dp"
+        android:layout_marginTop="33dp"
+        android:ems="10"
+        android:hint="From"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/upload_activity_where"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="To"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/upload_activity_from"
+        app:layout_constraintTop_toBottomOf="@+id/upload_activity_from" />
+
+    <Button
+        android:id="@+id/upload_activity_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="56dp"
+        android:onClick="addTrip"
+        android:text="Add Trıp"
+        app:layout_constraintEnd_toEndOf="@+id/upload_activity_date"
+        app:layout_constraintTop_toBottomOf="@+id/upload_activity_date" />
+
+</android.support.constraint.ConstraintLayout>
