@@ -127,6 +127,7 @@ public class SignUpActivity extends AppCompatActivity {
                                     usr.put("autologin",true);
                                 }else{
                                     usr.put("autologin",false);
+
                                 }
                                 usr.saveInBackground();
 
@@ -195,7 +196,7 @@ public class SignUpActivity extends AppCompatActivity {
         /*
         ParseUser user = new ParseUser();
 
-        user.setUsername(usernameText.getText().toString());
+        user.setUsername(usernameTextFake.getText().toString());
         user.setEmail(emailText.getText().toString());
         user.setPassword(passwordText.getText().toString());
         user.put("freeze", false);

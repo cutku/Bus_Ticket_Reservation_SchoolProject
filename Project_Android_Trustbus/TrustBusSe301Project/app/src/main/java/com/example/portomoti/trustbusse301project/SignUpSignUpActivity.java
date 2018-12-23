@@ -8,18 +8,13 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.parse.FindCallback;
-import com.parse.LogInCallback;
 import com.parse.ParseException;
-import com.parse.ParseQuery;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
-import java.util.List;
-
 public class SignUpSignUpActivity extends AppCompatActivity {
 
-    EditText usernameText, surnameText, emailText, passwordText ,dateofBirthText, ssnText  ;
+    EditText usernameTextFake, surnameText, emailText, passwordText ,dateofBirthText, ssnText,usernameText  ;
     RadioButton male, female, acceptTerms;
 
     @Override
@@ -30,15 +25,15 @@ public class SignUpSignUpActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up_sign_up_page);
 
-
-        usernameText= findViewById(R.id.signUpSignUpActivityNameText);
-        surnameText = findViewById(R.id.signUpSignUpAccountActivitySurnameText);
-        emailText = findViewById(R.id.signUpSignUpAccountActivityEmailText);
-        dateofBirthText = findViewById(R.id.signUpSignUpAccountActivityDateOfBirthText);
-        ssnText = findViewById(R.id.signUpSignUpAccountActivitySSNText);
+        usernameText =  findViewById(R.id.signUpSignUpActivityNameText);
+        usernameTextFake = findViewById(R.id.signUpSignUpActivityEmailText);
+        surnameText = findViewById(R.id.signUpSignUpActivityActivitySurnameText);
+        emailText = findViewById(R.id.signUpSignUpActivityEmailText);
+        dateofBirthText = findViewById(R.id.signUpSignUpActivityDateOfBirthText);
+        ssnText = findViewById(R.id.signUpSignUpActivitySSNText);
         male = findViewById(R.id.signUpSignUpAccountActivityMaleRadioButton);
         female = findViewById(R.id.signUpSignUpAccountActivityFemaleRadioButton);
-        passwordText = findViewById(R.id.signUpSignUpAccountActivityPasswordText);
+        passwordText = findViewById(R.id.signUpSignUpActivityPasswordText);
 
 
 
@@ -60,8 +55,8 @@ public class SignUpSignUpActivity extends AppCompatActivity {
 
     public void signUpSignUp(View view) {
         ParseUser user = new ParseUser();
-
-        user.setUsername(usernameText.getText().toString());
+        user.put("name",usernameText.getText().toString());
+        user.setUsername(usernameTextFake.getText().toString());
         user.setEmail(emailText.getText().toString());
         user.setPassword(passwordText.getText().toString());
         user.put("userSurname", surnameText.getText().toString());

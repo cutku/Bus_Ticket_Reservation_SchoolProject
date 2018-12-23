@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Switch;
@@ -17,7 +16,7 @@ import com.parse.SaveCallback;
 
 public class ManageAccountActivity extends AppCompatActivity {
 
-    EditText usernameText, surnameText, emailText, passwordText ,dateofBirthText, ssnText  ;
+    EditText usernameTextFake, surnameText, emailText, passwordText ,dateofBirthText, ssnText,usernameText  ;
     RadioButton male, female;
     Switch freezeSwitch;
     boolean freeze;
@@ -29,16 +28,16 @@ public class ManageAccountActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_manage_account);
 
-
-        usernameText= findViewById(R.id.signUpSignUpActivityNameText);
-        surnameText = findViewById(R.id.signUpSignUpAccountActivitySurnameText);
-        emailText = findViewById(R.id.signUpSignUpAccountActivityEmailText);
-        dateofBirthText = findViewById(R.id.signUpSignUpAccountActivityDateOfBirthText);
-        ssnText = findViewById(R.id.addManagerActivitySsnText);
-        male = findViewById(R.id.managerAccountActivityMaleRadioButton);
-        female = findViewById(R.id.managerAccountActivityFemaleRadioButton);
-        passwordText = findViewById(R.id.manageAccountActivityPasswordText);
-        freezeSwitch = findViewById(R.id.activityManageAccountFreezeSwitch);
+        usernameText=findViewById(R.id.ManageAccountActivityNameText);
+        usernameTextFake= findViewById(R.id.ManageAccountActivityEmailText);
+        surnameText = findViewById(R.id.signUpSignUpActivityActivitySurnameText);
+        emailText = findViewById(R.id.ManageAccountActivityEmailText);
+        dateofBirthText = findViewById(R.id.ManageAccountActivityDateOfBirth);
+        ssnText = findViewById(R.id.ManageAccountActivitySSNText);
+        male = findViewById(R.id.ManageAccountActivityMaleRadioButton);
+        female = findViewById(R.id.ManageAccountActivityFemailRadioButton);
+        passwordText = findViewById(R.id.ManageAccountActivityPasswordText);
+        freezeSwitch = findViewById(R.id.ManageAccountactivityFreezeSwitch);
     }
 
 
@@ -46,9 +45,13 @@ public class ManageAccountActivity extends AppCompatActivity {
     public void saveChanges(View view){
         ParseUser user = ParseUser.getCurrentUser();
 
-        if(usernameText != null) {
-            user.setUsername(usernameText.getText().toString());
+        if(usernameTextFake != null) {
+            user.setUsername(usernameTextFake.getText().toString());
         }
+        if (usernameText!= null) {
+            user.put("name", usernameText.getText().toString());
+        }
+
         if (surnameText != null){
             user.put("userSurname", surnameText.getText().toString());
         }
