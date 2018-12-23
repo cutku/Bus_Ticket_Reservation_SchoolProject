@@ -6,4 +6,30 @@
     android:layout_height="match_parent"
     tools:layout_editor_absoluteY="81dp">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/custom_view_from_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="from" />
+
+        <TextView
+            android:id="@+id/custom_view_where_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="where" />
+
+        <TextView
+            android:id="@+id/custom_view_date_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            tools:text="date" />
+
+    </LinearLayout>
 </android.support.constraint.ConstraintLayout>
