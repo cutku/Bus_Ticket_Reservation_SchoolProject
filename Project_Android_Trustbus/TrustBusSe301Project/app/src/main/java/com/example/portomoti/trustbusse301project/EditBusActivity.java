@@ -48,14 +48,14 @@ public class EditBusActivity extends AppCompatActivity {
             setContentView(R.layout.activity_edit_bus_schedule);
         }
 
-        /*
+
         public void addTrip(View view){
 
             //go addManager page
             Intent intent = new Intent(getApplicationContext(),AddTripActivity.class);
             startActivity(intent);
         }
-
+/*
         public void deleteTrip(View view){
 
             //go addManager page

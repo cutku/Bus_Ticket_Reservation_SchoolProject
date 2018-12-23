@@ -65,4 +65,6 @@ public class AdminActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),DeleteManagerActivity.class);
         startActivity(intent);
     }
+
+
 }

@@ -39,8 +39,8 @@ public class PostClass extends ArrayAdapter<String> {
         TextView dateText=customView.findViewById(R.id.custom_view_date_text);
 
         fromText.setText(from.get(position));
-        whereText.setText(from.get(position));
-        dateText.setText(from.get(position));
+        whereText.setText(where.get(position));
+      //  dateText.setText(date.get(position));
 
 
         return customView;
