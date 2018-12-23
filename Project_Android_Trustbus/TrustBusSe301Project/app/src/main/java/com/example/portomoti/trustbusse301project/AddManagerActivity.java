@@ -14,6 +14,9 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 import com.parse.SignUpCallback;
 
+/**
+ *
+ */
 public class AddManagerActivity  extends AppCompatActivity {
 
     EditText managerName, managerSurname, managerEmail, managerPassword, managerSsn, managerGsm;
