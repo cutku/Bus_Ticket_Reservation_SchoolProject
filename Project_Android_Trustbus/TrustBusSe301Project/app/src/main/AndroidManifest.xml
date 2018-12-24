@@ -29,6 +29,7 @@
         <activity android:name=".AddTripActivity"></activity>
         <activity android:name=".DeleteTripActivity"></activity>
         <activity android:name=".ListTripsActivity"></activity>
+        <activity android:name=".CalenderActivity"></activity>
     </application>
 
 </manifest>
