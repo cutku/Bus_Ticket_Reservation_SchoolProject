@@ -27,7 +27,7 @@ ListView listView;
 ArrayList<String> fromFromParse;
 ArrayList<String> whereFromParse;
 ArrayList<Date> dateFromParse;
-PostClass postClass;
+    PostClass postClass;
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -72,15 +72,15 @@ PostClass postClass;
 
         listView=findViewById(R.id.listView);
 
-        fromFromParse= new ArrayList<>();
-        whereFromParse=new ArrayList<>();
-        dateFromParse= new ArrayList<>();
+            fromFromParse= new ArrayList<>();
+            whereFromParse=new ArrayList<>();
+            dateFromParse= new ArrayList<>();
 
-        postClass= new PostClass(fromFromParse,whereFromParse,dateFromParse,this);
+            postClass= new PostClass(fromFromParse,whereFromParse,dateFromParse,this);
 
-        listView.setAdapter(postClass);
+            listView.setAdapter(postClass);
 
-        download();
+            download();
     }
     public void download(){
         ParseQuery<ParseObject> query= ParseQuery.getQuery("Trips");
