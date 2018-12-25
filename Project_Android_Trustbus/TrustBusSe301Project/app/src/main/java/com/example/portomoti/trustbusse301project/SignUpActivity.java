@@ -157,12 +157,6 @@ public class SignUpActivity extends AppCompatActivity {
 
                                 int userType = user.getInt("userType");
 
-                                /*
-                                //intent This will be delete
-                                Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
-                                startActivity(intent);
-                                */
-                                //this area will come after all functions done
 
                    //Checking the user type in order to start another View
                     if (userType == 0){
@@ -173,22 +167,22 @@ public class SignUpActivity extends AppCompatActivity {
 
                     }
 
-                    //intent for Admin Login
-                    if (userType == 1){
-                        //intent
-                        Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
-                        startActivity(intent);
-
-                    }
                     //intent for Manager Login
-                    if (userType == 2){
+                    else if (userType == 1){
                         //intent
                         Intent intent = new Intent(getApplicationContext(),ManagerActivity.class);
                         startActivity(intent);
 
                     }
-                    else{
 
+
+                    //intent for Admin Login
+                    else if (userType == 2){
+                        //intent
+                        Intent intent = new Intent(getApplicationContext(),AdminActivity.class);
+                        startActivity(intent);
+                    }
+                    else{
                         //intent for Guest without any Login
                         Intent intent = new Intent(getApplicationContext(),CustomerActivity.class);
                         startActivity(intent);
