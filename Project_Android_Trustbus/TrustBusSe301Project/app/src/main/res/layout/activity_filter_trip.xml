@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_light"
     tools:context=".FilterTripActivity">
 
     <Button
@@ -46,13 +47,15 @@
         android:layout_marginTop="101dp"
         android:layout_marginEnd="7dp"
         android:layout_marginBottom="118dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/switchOneWay"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.209" />
+        app:layout_constraintVertical_bias="0.209"
+        app:layout_constraintVertical_chainStyle="spread_inside" />
 
     <Spinner
         android:id="@+id/toSpinner"
@@ -61,6 +64,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="52dp"
         android:layout_marginEnd="8dp"
+        android:background="@android:color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView10"
@@ -74,6 +78,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginEnd="48dp"
         android:layout_marginBottom="8dp"
+        android:background="@android:color/white"
         app:layout_constraintBottom_toTopOf="@+id/toSpinner"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fromSpinner"
