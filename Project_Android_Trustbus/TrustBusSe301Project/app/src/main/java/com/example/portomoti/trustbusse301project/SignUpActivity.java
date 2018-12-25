@@ -62,14 +62,14 @@ public class SignUpActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }
-                if (userType == 1&& booleanauto==true) {
+                else if (userType == 1&& booleanauto==true) {
                     Toast.makeText(getApplicationContext(), "User Logged-In Automaticly", Toast.LENGTH_LONG).show();
                     //intent
                     Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                     startActivity(intent);
 
                 }
-                if (userType == 2&& booleanauto==true) {
+                else if (userType == 2&& booleanauto==true) {
                     Toast.makeText(getApplicationContext(), "User Logged-In Automaticly", Toast.LENGTH_LONG).show();
                     //intent
                     Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
