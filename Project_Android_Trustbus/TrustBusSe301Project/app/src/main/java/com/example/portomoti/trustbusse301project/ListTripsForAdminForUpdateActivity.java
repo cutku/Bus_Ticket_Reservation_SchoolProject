@@ -1,6 +1,9 @@
 package com.example.portomoti.trustbusse301project;
 
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
@@ -27,6 +31,7 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
@@ -38,12 +43,14 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
     ArrayList<String> dateFromParse; //String ---> DATE
     PostActivityForAdmin postActivityAdmin ;
 
+    Context context=this;
 
     ArrayAdapter<String> adapter;
     Spinner fromSpinner,whereSpinner;
     String Cities[] = {"Istanbul", "Ankara", "Izmir", "Diyarbakır"};
     Button updateTrip,updateCelanderButton;
     EditText objectIdText;
+    TextView dateText;
 
     String recordFrom = "";
     String recordWhere = "";
@@ -87,6 +94,7 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_trips_for_admin_for_update_trip);
 
 
+        /*
         //calender
         TextView dateTimeText = findViewById(R.id.listTripActivityForAdminForUpdateTripDateText);
 
@@ -95,11 +103,48 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
             dateTimeText.setText(calenderDate + " 12:00");
             DateALL = calenderDate + " 12:00"; //now only add 12:00 clock
         }
+        */
+        dateText=findViewById(R.id.listTripActivityForAdminForUpdateTripDateText);
         fromSpinner = findViewById(R.id.listTripsForAdminForUpdateFromSpinner);
         whereSpinner = findViewById(R.id.listTipsActivityForAdminForUpdateDestinationSpinner);
         updateCelanderButton = findViewById(R.id.listTripForAdminFroUpdateTripDepartureDateButton);
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Cities);
+
+        updateCelanderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar calendar= Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                final DatePickerDialog dpd= new DatePickerDialog(context,new DatePickerDialog.OnDateSetListener(){
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month += 1;
+                        dateText.setText(day + "/" + month + "/" + year);
+
+                    }
+
+                },year,month,day);
+                dpd.setButton(DatePickerDialog.BUTTON_POSITIVE,"Select",dpd);
+                dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE,"Cancel",dpd);
+
+
+                if(!((Activity) ListTripsForAdminForUpdateActivity.this).isFinishing())
+                {
+                    dpd.show();
+                }
+            }
+        });
+
+
+
+
+
+
+            adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Cities);
 
         fromSpinner.setAdapter(adapter);
         fromSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -202,8 +247,8 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
     }
 
     public void goCalender(View view){
-        Intent intent = new Intent(getApplicationContext(), CalenderActivityUpdate.class);
-        startActivity(intent);
+       // Intent intent = new Intent(getApplicationContext(), CalenderActivityUpdate.class);
+        //startActivity(intent);
     }
     public void updateTrip(View view) {
 
@@ -221,8 +266,8 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
                     if(recordWhere != null) {
                         object.put("destination", recordWhere);
                     }
-                    if(DateALL != null) {
-                        object.put("date", DateALL);
+                    if(dateText != null) {
+                        object.put("date", dateText.getText().toString());
                     }
 
                     object.saveInBackground(new SaveCallback() {
