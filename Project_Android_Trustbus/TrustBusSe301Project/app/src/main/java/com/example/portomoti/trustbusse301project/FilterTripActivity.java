@@ -62,7 +62,7 @@ public class FilterTripActivity extends AppCompatActivity {
                       //TextView'a kullanıcının seçtiği tarihi set ediyoruz.
                       dateChosen.setText(dayOfMonth+ "/" +month+ "/" +year);
                   }
-              },year,day,month);
+              },year,month,day);
                 dpd.setButton(DatePickerDialog.BUTTON_POSITIVE,"Select",dpd);
                 dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE,"Cancel",dpd);
 
