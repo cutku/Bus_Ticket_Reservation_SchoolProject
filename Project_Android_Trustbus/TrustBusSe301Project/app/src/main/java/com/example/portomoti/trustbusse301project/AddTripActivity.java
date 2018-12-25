@@ -125,48 +125,51 @@ public class AddTripActivity extends AppCompatActivity {
 
 
         //IF EKLENCEK AYNI DESTİNATIONA IZIN VERİLMEYECEK.
+        if (recordFrom == recordWhere){
+            Toast.makeText(getApplicationContext(), "From and Destination Cannot be same", Toast.LENGTH_LONG).show();
+        }
+        else {
+
+            ParseObject object = new ParseObject("Trips");
+            object.put("from", recordFrom);
+            object.put("destination", recordWhere);
+            object.put("date", DateALL);
+            object.put("delete", false);
+            object.saveInBackground(new SaveCallback() {
+                @Override
+                public void done(ParseException e) {
+                    if (e != null) {
+                        Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Trip uploaded", Toast.LENGTH_LONG).show();
 
 
-        ParseObject object = new ParseObject("Trips");
-        object.put("from", recordFrom);
-        object.put("destination", recordWhere);
-        object.put("date", DateALL);
-        object.put("delete",false);
-        object.saveInBackground(new SaveCallback() {
-            @Override
-            public void done(ParseException e) {
-                if (e != null) {
-                    Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Trip uploaded", Toast.LENGTH_LONG).show();
+                        ParseUser usr = ParseUser.getCurrentUser();
 
-
-                    ParseUser usr = ParseUser.getCurrentUser();
-
-                    int usrType = usr.getInt("userType");
+                        int usrType = usr.getInt("userType");
 //HATA
 
-                    //intent for Admin Login
-                    if (usrType == 1) {
-                        //intent
-                        Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
-                        startActivity(intent);
+                        //intent for Admin Login
+                        if (usrType == 1) {
+                            //intent
+                            Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
+                            startActivity(intent);
 
-                    }
-                    //intent for Manager Login
-                    else if (usrType == 2) {
-                        //intent
-                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
-                        startActivity(intent);
+                        }
+                        //intent for Manager Login
+                        else if (usrType == 2) {
+                            //intent
+                            Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                            startActivity(intent);
 
-                    } else {
-                        Toast.makeText(getApplicationContext(), "User Type Undefined", Toast.LENGTH_LONG).show();
-                        Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
-                        startActivity(intent);
+                        } else {
+                            Toast.makeText(getApplicationContext(), "User Type Undefined", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                            startActivity(intent);
+                        }
                     }
                 }
-            }
-        });
-
+            });
+        }
     }
 }
