@@ -177,14 +177,14 @@ public class AddBookingActivity extends AppCompatActivity {
                     //intent for Admin Login
                     if (usrType == 1) {
                         //intent
-                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
                         startActivity(intent);
 
                     }
                     //intent for Manager Login
                     else if (usrType == 2) {
                         //intent
-                        Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                         startActivity(intent);
 
                     } else {

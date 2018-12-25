@@ -144,19 +144,19 @@ public class AddTripActivity extends AppCompatActivity {
                     ParseUser usr = ParseUser.getCurrentUser();
 
                     int usrType = usr.getInt("userType");
-
+//HATA
 
                     //intent for Admin Login
                     if (usrType == 1) {
                         //intent
-                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
                         startActivity(intent);
 
                     }
                     //intent for Manager Login
-                    if (usrType == 2) {
+                    else if (usrType == 2) {
                         //intent
-                        Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                         startActivity(intent);
 
                     } else {
