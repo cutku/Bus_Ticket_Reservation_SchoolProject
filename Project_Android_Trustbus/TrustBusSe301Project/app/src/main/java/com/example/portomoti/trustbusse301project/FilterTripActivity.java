@@ -7,17 +7,18 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import java.util.Calendar;
-import java.util.Date;
+
 
 public class FilterTripActivity extends AppCompatActivity {
 
     Spinner fromSpinner,toSpinner;
     TextView dateChosen;
     Button setDate,list;
-
+    Switch oneWay;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,6 +30,8 @@ public class FilterTripActivity extends AppCompatActivity {
         setDate=findViewById(R.id.setDateButton);
         list=findViewById(R.id.listButton);
         dateChosen=findViewById(R.id.dateTextView);
+        oneWay=findViewById(R.id.switchOneWay);
+
 
       setDate.setOnClickListener(new View.OnClickListener() {
           @Override
@@ -46,7 +49,7 @@ public class FilterTripActivity extends AppCompatActivity {
                       dateChosen.setText(dayOfMonth+ "/" +month+ "/" +year);
                   }
               },year,day,month);
-                dpd.setButton(DatePickerDialog.BUTTON_POSITIVE,"Selecet",dpd);
+                dpd.setButton(DatePickerDialog.BUTTON_POSITIVE,"Select",dpd);
                 dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE,"Cancel",dpd);
                 dpd.show();
           }
