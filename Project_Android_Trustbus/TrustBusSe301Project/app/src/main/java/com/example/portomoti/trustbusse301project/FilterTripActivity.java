@@ -1,6 +1,8 @@
 package com.example.portomoti.trustbusse301project;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ public class FilterTripActivity extends AppCompatActivity {
     TextView dateChosen;
     Button setDate,list;
     Switch oneWay;
+    Context context=this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,7 @@ public class FilterTripActivity extends AppCompatActivity {
               int month = calendar.get(Calendar.MONTH);
               int day = calendar.get(Calendar.DAY_OF_MONTH);
 
-              DatePickerDialog dpd = new DatePickerDialog(getApplicationContext(), new DatePickerDialog.OnDateSetListener() {
+              DatePickerDialog dpd = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
                   @Override
                   public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
                       // Aylar DatePicker Objesinde 0'dan başladığı için 1 ekliyoruz.
@@ -62,7 +65,11 @@ public class FilterTripActivity extends AppCompatActivity {
               },year,day,month);
                 dpd.setButton(DatePickerDialog.BUTTON_POSITIVE,"Select",dpd);
                 dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE,"Cancel",dpd);
-                dpd.show();
+
+              if(!((Activity) FilterTripActivity.this).isFinishing())
+              {
+                  dpd.show();
+              }
           }
          });
 
