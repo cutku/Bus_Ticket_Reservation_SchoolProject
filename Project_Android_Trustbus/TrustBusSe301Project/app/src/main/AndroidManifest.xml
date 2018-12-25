@@ -31,6 +31,7 @@
         <activity android:name=".ListTripsActivity" />
         <activity android:name=".CalenderActivity" />
         <activity android:name=".FilterTripActivity"></activity>
+        <activity android:name=".ListTripsForAdminActivity"></activity>
     </application>
 
 </manifest>

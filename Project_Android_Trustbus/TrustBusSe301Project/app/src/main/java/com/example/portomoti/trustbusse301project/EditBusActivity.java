@@ -55,14 +55,14 @@ public class EditBusActivity extends AppCompatActivity {
             Intent intent = new Intent(getApplicationContext(),AddTripActivity.class);
             startActivity(intent);
         }
-/*
+
         public void deleteTrip(View view){
 
             //go addManager page
-            Intent intent = new Intent(getApplicationContext(),DeleteTripActivity.class);
+            Intent intent = new Intent(getApplicationContext(),ListTripsForAdminActivity.class);
             startActivity(intent);
         }
-
+/*
         public void updateTrip(View view){
 
         //go addManager page

@@ -1,32 +1,42 @@
 package com.example.portomoti.trustbusse301project;
 
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.parse.DeleteCallback;
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
 import com.parse.ParseUser;
+import com.parse.SaveCallback;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListTripsActivity extends AppCompatActivity {
+public class ListTripsForAdminActivity extends AppCompatActivity {
 
-    ListView listView;
+    ListView listViewAdmin;
+    ArrayList<String> objectId;
     ArrayList<String> fromFromParse;
     ArrayList<String> whereFromParse;
     ArrayList<String> dateFromParse; //String ---> DATE
-    PostActivity postActivity ;
+    PostActivityForAdmin postActivityAdmin ;
+    Button deleteTrip;
+    EditText objectIdText;
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -62,17 +72,21 @@ public class ListTripsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_trips);
+        setContentView(R.layout.activity_list_trips_for_admin);
 
-        listView = findViewById(R.id.listView);
+        objectIdText = findViewById(R.id.activityListTripForAdminObjectIdText);
+        deleteTrip = findViewById(R.id.activityListTripsForAdminDeleteTripButton);
 
+        listViewAdmin = findViewById(R.id.listViewAdmin);
+
+        objectId= new ArrayList<>();
         fromFromParse= new ArrayList<>();
         whereFromParse=new ArrayList<>();
         dateFromParse= new ArrayList<>();
 
-        postActivity= new PostActivity(fromFromParse,whereFromParse,dateFromParse,this);
+        postActivityAdmin= new PostActivityForAdmin(objectId,fromFromParse,whereFromParse,dateFromParse,this);
 
-        listView.setAdapter(postActivity);
+        listViewAdmin.setAdapter(postActivityAdmin);
 
         download();
 
@@ -80,6 +94,7 @@ public class ListTripsActivity extends AppCompatActivity {
 
     public void download(){
         ParseQuery<ParseObject> query= ParseQuery.getQuery("Trips");
+        query.whereEqualTo("deleted",false); // diğerlerine de eklencek ---->>> 9:31Pm eklenince Silincek
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -91,12 +106,12 @@ public class ListTripsActivity extends AppCompatActivity {
                     if(objects.size()>0){
                         for(ParseObject object: objects){
 
-
+                            objectId.add(object.getObjectId());
                             fromFromParse.add(object.getString("from"));
                             whereFromParse.add(object.getString("destination"));
                             dateFromParse.add(object.getString("date")); // String ---->getDate
 
-                            postActivity.notifyDataSetChanged();
+                            postActivityAdmin.notifyDataSetChanged();
                         }
                     }
                 }
@@ -104,5 +119,31 @@ public class ListTripsActivity extends AppCompatActivity {
         });
     }
 
+    public void deleteWrittenTrip(View view) {
 
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Trips");
+
+        query.getInBackground(objectIdText.getText().toString(), new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e != null) {
+                    e.printStackTrace();
+                } else {
+                    object.put("deleted",true);
+                    object.saveInBackground(new SaveCallback() {
+                        @Override
+                        public void done(ParseException e) {
+                            if (e != null) {
+                                Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(getApplicationContext(), "Changes Saved", Toast.LENGTH_LONG).show();
+                            }
+                        }
+                    });
+                }
+            }
+        });
+
+
+    }
 }
