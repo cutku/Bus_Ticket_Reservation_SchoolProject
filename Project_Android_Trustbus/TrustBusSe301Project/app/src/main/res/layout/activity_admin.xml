@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".AdminActivity">
+    tools:context=".AdminActivity"
+    tools:layout_editor_absoluteY="81dp">
 
     <Button
         android:id="@+id/activityAdminAddManagerButton"
@@ -25,18 +26,20 @@
         android:layout_marginBottom="10dp"
         android:onClick="deleteManager"
         android:text="Delete Manager"
-        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintBottom_toTopOf="@+id/adminActivityManageBookingButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activityAdminAddManagerButton" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/adminActivityManageBookingButton"
         android:layout_width="212dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="263dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginEnd="1dp"
+        android:layout_marginBottom="14dp"
+        android:onClick="manageBooking"
+        android:text="Manage Booking"
+        app:layout_constraintBottom_toTopOf="@+id/adminActivityEditBusScheduleButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/activityAdminDeleteManagerButton" />
@@ -51,6 +54,17 @@
         app:layout_constraintBottom_toTopOf="@+id/activityAdminAddManagerButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="spread_inside" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/adminActivityEditBusScheduleButton"
+        android:layout_width="213dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="206dp"
+        android:onClick="editBus"
+        android:text="Edit Bus Schedule"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adminActivityManageBookingButton" />
 </android.support.constraint.ConstraintLayout>
