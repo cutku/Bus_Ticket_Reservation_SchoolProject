@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -18,11 +19,16 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.parse.FindCallback;
 import com.parse.LogOutCallback;
 import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
 import com.parse.ParseUser;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 
 public class FilterTripActivity extends AppCompatActivity implements View.OnClickListener {
@@ -32,6 +38,7 @@ public class FilterTripActivity extends AppCompatActivity implements View.OnClic
     Button setDate,list,setDateReturn;
     Switch oneWay;
     Context context=this;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +57,8 @@ public class FilterTripActivity extends AppCompatActivity implements View.OnClic
 
         setDateReturn.setOnClickListener(this);
         setDate.setOnClickListener(this);
+
+
 
         oneWay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -134,5 +143,8 @@ public class FilterTripActivity extends AppCompatActivity implements View.OnClic
             dpd.show();
         }
     }
+
+
+
 }
 
