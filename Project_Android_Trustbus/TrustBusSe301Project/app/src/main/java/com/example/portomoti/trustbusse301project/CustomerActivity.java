@@ -57,15 +57,15 @@ public class CustomerActivity extends AppCompatActivity {
     }
     public void listMyTickets(View view){
 
-        //go addManager page
+        //go My Tickets
         Intent intent = new Intent(getApplicationContext(),ListMyTicketsActivity.class);
         startActivity(intent);
     }
 
     public void listTrips(View view){
 
-        //go addManager page
-        Intent intent = new Intent(getApplicationContext(),ListTripsActivity.class);
+        //go Buy Ticket
+        Intent intent = new Intent(getApplicationContext(),FilterTripActivity.class);
         startActivity(intent);
     }
 
