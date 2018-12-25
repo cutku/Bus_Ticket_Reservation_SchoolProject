@@ -17,19 +17,20 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AdminActivity"></activity>
-        <activity android:name=".AddManagerActivity"></activity>
-        <activity android:name=".DeleteManagerActivity"></activity>
-        <activity android:name=".CustomerActivity"></activity>
-        <activity android:name=".ManageAccountActivity"></activity>
-        <activity android:name=".ListMyTicketsActivity"></activity>
-        <activity android:name=".SignUpSignUpActivity"></activity>
-        <activity android:name=".ManagerActivity"></activity>
-        <activity android:name=".EditBusActivity"></activity>
-        <activity android:name=".AddTripActivity"></activity>
-        <activity android:name=".DeleteTripActivity"></activity>
-        <activity android:name=".ListTripsActivity"></activity>
-        <activity android:name=".CalenderActivity"></activity>
+        <activity android:name=".AdminActivity" />
+        <activity android:name=".AddManagerActivity" />
+        <activity android:name=".DeleteManagerActivity" />
+        <activity android:name=".CustomerActivity" />
+        <activity android:name=".ManageAccountActivity" />
+        <activity android:name=".ListMyTicketsActivity" />
+        <activity android:name=".SignUpSignUpActivity" />
+        <activity android:name=".ManagerActivity" />
+        <activity android:name=".EditBusActivity" />
+        <activity android:name=".AddTripActivity" />
+        <activity android:name=".DeleteTripActivity" />
+        <activity android:name=".ListTripsActivity" />
+        <activity android:name=".CalenderActivity" />
+        <activity android:name=".FilterTripActivity"></activity>
     </application>
 
 </manifest>
