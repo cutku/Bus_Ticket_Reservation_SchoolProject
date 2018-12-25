@@ -1,5 +1,8 @@
 package com.example.portomoti.trustbusse301project;
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
@@ -8,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,16 +22,19 @@ import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class AddTripActivity extends AppCompatActivity {
     Spinner fromSpinner,whereSpinner;
-    EditText dateText;
+
     String Cities[] = {"Istanbul", "Ankara", "Izmir", "Diyarbakır"};
     ArrayAdapter<String> adapter;
     Button calenderButton;
     String recordFrom = "";
     String recordWhere = "";
+    TextView dateText;
+    Context context=this;
 
     String DateALL;
 
@@ -42,19 +49,58 @@ public class AddTripActivity extends AppCompatActivity {
 
 
         //calender activity get date from calender
-        TextView dateTimeText = findViewById(R.id.addTripActivityTextView);
+        //TextView dateTimeText = findViewById(R.id.addTripActivityTextView);
 
+        /*
         String calenderDate = getIntent().getStringExtra("calenderDate");
         if (calenderDate!= null) {
             dateTimeText.setText(calenderDate + " 12:00");
                     DateALL = calenderDate + " 12:00"; //now only add 12:00 clock
         }
+        */
 
         //calender Activity End
         fromSpinner = findViewById(R.id.addTripActivityFromSpinner);
         whereSpinner = findViewById(R.id.addTripActivityWhereSpinner);
         calenderButton = findViewById(R.id.addTripActivityDateButton);
+        dateText=findViewById(R.id.addTripActivityTextView);
         adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Cities);
+
+        calenderButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar calendar= Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                final DatePickerDialog dpd= new DatePickerDialog(context,new DatePickerDialog.OnDateSetListener(){
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month += 1;
+                        dateText.setText(day + "/" + month + "/" + year);
+
+                    }
+
+                },year,month,day);
+                dpd.setButton(DatePickerDialog.BUTTON_POSITIVE,"Select",dpd);
+                dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE,"Cancel",dpd);
+
+
+                if(!((Activity) AddTripActivity.this).isFinishing())
+                {
+                    dpd.show();
+                }
+            }
+
+
+        });
+
+
+
+
+
 
         fromSpinner.setAdapter(adapter);
         fromSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
@@ -110,8 +156,8 @@ public class AddTripActivity extends AppCompatActivity {
     }
 
     public void goCalender(View view){
-        Intent intent = new Intent(getApplicationContext(), CalenderActivity.class);
-        startActivity(intent);
+       // Intent intent = new Intent(getApplicationContext(), CalenderActivity.class);
+        //startActivity(intent);
     }
 
 
@@ -133,7 +179,7 @@ public class AddTripActivity extends AppCompatActivity {
             ParseObject object = new ParseObject("Trips");
             object.put("from", recordFrom);
             object.put("destination", recordWhere);
-            object.put("date", DateALL);
+            object.put("date", dateText.getText().toString());
             object.put("delete", false);
             object.saveInBackground(new SaveCallback() {
                 @Override
