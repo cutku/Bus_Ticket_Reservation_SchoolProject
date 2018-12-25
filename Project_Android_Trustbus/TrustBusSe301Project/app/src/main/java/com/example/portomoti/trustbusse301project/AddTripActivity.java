@@ -123,10 +123,15 @@ public class AddTripActivity extends AppCompatActivity {
 
 //        Date date1 = new SimpleDateFormat("dd/MM/yyyy HH:mm").parse(textDate);
 
+
+        //IF EKLENCEK AYNI DESTİNATIONA IZIN VERİLMEYECEK.
+
+
         ParseObject object = new ParseObject("Trips");
         object.put("from", recordFrom);
         object.put("destination", recordWhere);
         object.put("date", DateALL);
+        object.put("delete",false);
         object.saveInBackground(new SaveCallback() {
             @Override
             public void done(ParseException e) {
