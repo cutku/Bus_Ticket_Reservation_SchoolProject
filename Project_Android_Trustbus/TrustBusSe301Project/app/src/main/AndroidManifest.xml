@@ -36,8 +36,6 @@
         <activity android:name=".ListTripsForAdminForUpdateActivity"></activity>
         <activity android:name=".ManageBookingActivity"></activity>
         <activity android:name=".AddBookingActivity"></activity>
-        <activity android:name=".DeleteBookingActivity"></activity>
-
     </application>
 
 </manifest>
