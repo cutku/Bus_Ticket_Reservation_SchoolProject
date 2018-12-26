@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.icu.text.SimpleDateFormat;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,16 +21,18 @@ import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
 import java.util.Calendar;
-import java.util.Date;
 
 public class AddTripActivity extends AppCompatActivity {
-    Spinner fromSpinner,whereSpinner;
+    Spinner fromSpinner,whereSpinner, busplate;
 
     String Cities[] = {"Istanbul", "Ankara", "Izmir", "Diyarbakır"};
-    ArrayAdapter<String> adapter;
+    String Plates[] = {"34AC6111", "34EA1845", "34BPP61"};
+    ArrayAdapter<String> adapter,adapter2;
+
     Button calenderButton;
     String recordFrom = "";
     String recordWhere = "";
+    String recordPlate = "";
     TextView dateText;
     Context context=this;
 
@@ -63,8 +63,12 @@ public class AddTripActivity extends AppCompatActivity {
         fromSpinner = findViewById(R.id.addTripActivityFromSpinner);
         whereSpinner = findViewById(R.id.addTripActivityWhereSpinner);
         calenderButton = findViewById(R.id.addTripActivityDateButton);
-        dateText=findViewById(R.id.addTripActivityTextView);
+        dateText = findViewById(R.id.addTripActivityTextView);
+        busplate = findViewById(R.id.addTripActivityBusPlateSpinner);
+
         adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Cities);
+
+        adapter2=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Plates);
 
         calenderButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +101,29 @@ public class AddTripActivity extends AppCompatActivity {
 
         });
 
+        busplate.setAdapter(adapter2);
+        busplate.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        recordPlate = "34AC6111";
+                        break;
+                    case 1:
+                        recordPlate = "34EA1845";
+                        break;
+                    case 2:
+                        recordPlate = "34BPP61";
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
@@ -181,6 +208,7 @@ public class AddTripActivity extends AppCompatActivity {
             object.put("destination", recordWhere);
             object.put("date", dateText.getText().toString());
             object.put("delete", false);
+            object.put("busID", recordPlate);
             object.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {

@@ -25,15 +25,16 @@ import com.parse.SaveCallback;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListTripsForAdminActivity extends AppCompatActivity {
+public class ListTripsForCustomerActivity extends AppCompatActivity {
 
-    ListView listViewAdmin;
+    ListView listViewCustomer;
     ArrayList<String> objectId;
     ArrayList<String> fromFromParse;
     ArrayList<String> whereFromParse;
-    ArrayList<String> dateFromParse; //String ---> DATE
-    PostActivityForAdmin postActivityAdmin ;
-    Button deleteTrip;
+    ArrayList<String> dateFromParse;//String ---> DATE
+
+    PostActivityForCustomer postActivityForCustomer ;
+    Button buyTrip;
     EditText objectIdText;
 
     @Override
@@ -70,21 +71,22 @@ public class ListTripsForAdminActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_trips_for_admin);
+        setContentView(R.layout.activity_list_trips_for_customer);
 
         objectIdText = findViewById(R.id.activityListTripForCustomerObjectIdTextUpdateTrip);
-        deleteTrip = findViewById(R.id.activityListTripsForCustomerBuyButton);
+        buyTrip = findViewById(R.id.activityListTripsForCustomerBuyButton);
 
-        listViewAdmin = findViewById(R.id.listViewCustomerBuyTrip);
+        listViewCustomer = findViewById(R.id.listViewCustomerBuyTrip);
 
         objectId= new ArrayList<>();
         fromFromParse= new ArrayList<>();
         whereFromParse=new ArrayList<>();
         dateFromParse= new ArrayList<>();
 
-        postActivityAdmin= new PostActivityForAdmin(objectId,fromFromParse,whereFromParse,dateFromParse,this);
 
-        listViewAdmin.setAdapter(postActivityAdmin);
+        postActivityForCustomer = new PostActivityForCustomer(objectId,fromFromParse,whereFromParse,dateFromParse,this);
+
+        listViewCustomer.setAdapter(postActivityForCustomer);
 
         download();
 
@@ -109,7 +111,7 @@ public class ListTripsForAdminActivity extends AppCompatActivity {
                             whereFromParse.add(object.getString("destination"));
                             dateFromParse.add(object.getString("date")); // String ---->getDate
 
-                            postActivityAdmin.notifyDataSetChanged();
+                            postActivityForCustomer.notifyDataSetChanged();
                         }
                     }
                 }
@@ -117,30 +119,9 @@ public class ListTripsForAdminActivity extends AppCompatActivity {
         });
     }
 
-    public void deleteWrittenTrip(View view) {
+    public void buyTrip(View view) {
 
-        ParseQuery<ParseObject> query = ParseQuery.getQuery("Trips");
 
-        query.getInBackground(objectIdText.getText().toString(), new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                if (e != null) {
-                    e.printStackTrace();
-                } else {
-                    object.put("deleted",true);
-                    object.saveInBackground(new SaveCallback() {
-                        @Override
-                        public void done(ParseException e) {
-                            if (e != null) {
-                                Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
-                            } else {
-                                Toast.makeText(getApplicationContext(), "Changes Saved", Toast.LENGTH_LONG).show();
-                            }
-                        }
-                    });
-                }
-            }
-        });
 
 
     }

@@ -65,7 +65,7 @@ public class CustomerActivity extends AppCompatActivity {
     public void listTrips(View view){
 
         //go Buy Ticket
-        Intent intent = new Intent(getApplicationContext(),FilterTripActivity.class);
+        Intent intent = new Intent(getApplicationContext(),ListTripsForCustomerActivity.class);
         startActivity(intent);
     }
 

@@ -201,10 +201,10 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
 
 
 
-        objectIdText = findViewById(R.id.activityListTripForAdminObjectIdTextUpdateTrip);
-        updateTrip = findViewById(R.id.activityListTripsForAdminUpdateTripButton);
+        objectIdText = findViewById(R.id.activityListTripForCustomerObjectIdTextUpdateTrip);
+        updateTrip = findViewById(R.id.activityListTripsForCustomerBuyButton);
 
-        listViewAdmin = findViewById(R.id.listViewAdminUpdateTrip);
+        listViewAdmin = findViewById(R.id.listViewCustomerBuyTrip);
 
         objectId= new ArrayList<>();
         fromFromParse= new ArrayList<>();
