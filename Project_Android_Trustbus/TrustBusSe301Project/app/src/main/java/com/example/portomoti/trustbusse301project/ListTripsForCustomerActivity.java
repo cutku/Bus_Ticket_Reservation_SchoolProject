@@ -8,9 +8,11 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -87,6 +89,19 @@ public class ListTripsForCustomerActivity extends AppCompatActivity {
         postActivityForCustomer = new PostActivityForCustomer(objectId,fromFromParse,whereFromParse,dateFromParse,this);
 
         listViewCustomer.setAdapter(postActivityForCustomer);
+        listViewCustomer.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                
+                String selected = (listViewCustomer.getItemAtPosition(position).toString());
+                objectIdText.setText(selected,TextView.BufferType.EDITABLE);
+
+            }
+        });
+
+
+
 
         download();
 
