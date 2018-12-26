@@ -120,6 +120,23 @@ public class ListTripsForCustomerActivity extends AppCompatActivity {
     }
 
     public void buyTrip(View view) {
+        ParseQuery<ParseObject> query = ParseQuery.getQuery("Trips");
+
+        query.getInBackground(objectIdText.getText().toString(), new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e != null) {
+                    e.printStackTrace();
+                } else {
+                    Intent intent = new Intent(getApplicationContext(),PaymentActivity.class);
+                    startActivity(intent);
+
+                   // intent.putExtra("objectId",objectId);
+                   // startActivity(intent);
+                }
+            }
+        });
+
 
 
 

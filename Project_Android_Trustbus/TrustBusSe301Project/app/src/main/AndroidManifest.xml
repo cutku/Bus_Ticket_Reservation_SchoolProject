@@ -38,5 +38,7 @@
         <activity android:name=".AddBookingActivity"></activity>
         <activity android:name=".ListTripsForCustomerActivity"></activity>
         <activity android:name=".DeleteBookingActivity"></activity>
+        <activity android:name=".PaymentActivity"></activity>
+
     </application>
 </manifest>
