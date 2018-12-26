@@ -20,7 +20,7 @@ import java.util.List;
 
 public class PaymentActivity extends AppCompatActivity {
 
-    String objectId = getIntent().getStringExtra("objectId");
+    //String objectId = getIntent().getStringExtra("objectId");
     Button buy;
     TextView cardnumber,cvc,name,surname;
 
@@ -40,10 +40,10 @@ public class PaymentActivity extends AppCompatActivity {
 
 
         ParseQuery<ParseObject> query= ParseQuery.getQuery("creditCard");
-        query.whereEqualTo("name",name); // diğerlerine de eklencek ---->>> 9:31Pm eklenince Silincek
-        query.whereEqualTo("surname",surname);
-        query.whereEqualTo("cvc",cvc);
-        query.whereEqualTo("creditCardNumber",cardnumber);
+        query.whereEqualTo("name",name.getText().toString()); // diğerlerine de eklencek ---->>> 9:31Pm eklenince Silincek
+        query.whereEqualTo("surname",surname.getText().toString());
+        query.whereEqualTo("cvc",cvc.getText().toString());
+        query.whereEqualTo("creditCardNumber",cardnumber.getText().toString());
         query.findInBackground(new FindCallback<ParseObject>() {
             @Override
             public void done(List<ParseObject> objects, ParseException e) {
@@ -51,11 +51,15 @@ public class PaymentActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
 
                 }else{
+
                     ParseUser usr= ParseUser.getCurrentUser();
                     ParseObject obj = new ParseObject("ticketUser");
-                    obj.put("email",usr.getEmail().toString());
+                    obj.put("email",usr.getEmail());
                     obj.put("from","Istanbul");
                     obj.put("destination","Ankara");
+
+                    obj.saveInBackground();
+                    Toast.makeText(getApplicationContext(),"OKKKKK",Toast.LENGTH_LONG).show();
                 }
             }
         });
