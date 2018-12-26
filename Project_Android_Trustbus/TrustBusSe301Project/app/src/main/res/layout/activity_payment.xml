@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="81dp">
+
+    <EditText
+        android:id="@+id/activityPaymentCardNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="69dp"
+        android:layout_marginTop="83dp"
+        android:ems="10"
+        android:hint="Card Number"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/activityPaymentCVC"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:ems="10"
+        android:hint="CVC"
+        android:inputType="number"
+        app:layout_constraintStart_toStartOf="@+id/activityPaymentCardNumber"
+        app:layout_constraintTop_toBottomOf="@+id/activityPaymentCardNumber" />
+
+    <Button
+        android:id="@+id/activityPaymentPayButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="37dp"
+        android:onClick="makePayment"
+        android:text="buy"
+        app:layout_constraintEnd_toEndOf="@+id/activityPaymentSurname"
+        app:layout_constraintStart_toStartOf="@+id/activityPaymentSurname"
+        app:layout_constraintTop_toBottomOf="@+id/activityPaymentSurname" />
+
+    <EditText
+        android:id="@+id/activityPaymentName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="34dp"
+        android:ems="10"
+        android:hint="Name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/activityPaymentCVC"
+        app:layout_constraintTop_toBottomOf="@+id/activityPaymentCVC" />
+
+    <EditText
+        android:id="@+id/activityPaymentSurname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:ems="10"
+        android:hint="Surname"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="@+id/activityPaymentName"
+        app:layout_constraintTop_toBottomOf="@+id/activityPaymentName" />
+</android.support.constraint.ConstraintLayout>
