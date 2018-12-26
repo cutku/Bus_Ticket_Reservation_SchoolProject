@@ -51,11 +51,7 @@ public class ManageBookingActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(),AddBookingActivity.class);
         startActivity(intent);
     }
-    public void editBooking(View view){
-        // go editBookingPage
-        Intent intent = new Intent(getApplicationContext(),EditBookingActivity.class);
-        startActivity(intent);
-    }
+
     public void deleteBooking(View view){
         // go Delete Booking page
         Intent intent = new Intent(getApplicationContext(),DeleteBookingActivity.class);
