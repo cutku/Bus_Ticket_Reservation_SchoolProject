@@ -3,42 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:layout_editor_absoluteY="81dp">
 
     <Button
         android:id="@+id/activityManagerAddBooking"
         android:layout_width="124dp"
         android:layout_height="0dp"
         android:layout_marginTop="100dp"
-        android:layout_marginBottom="44dp"
+        android:layout_marginBottom="103dp"
         android:onClick="addBooking"
         android:text="Add Bookıng"
-        app:layout_constraintBottom_toTopOf="@+id/activityManageEditBooking"
+        app:layout_constraintBottom_toTopOf="@+id/activityManageDeleteBooking"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/activityManageEditBooking"
-        android:layout_width="125dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="43dp"
-        android:onClick="editBooking"
-        android:text="Edıt Bookıng"
-        app:layout_constraintBottom_toTopOf="@+id/activityManageDeleteBooking"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityManagerAddBooking" />
-
-    <Button
         android:id="@+id/activityManageDeleteBooking"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="180dp"
+        android:layout_marginBottom="212dp"
         android:onClick="deleteBooking"
         android:text="Delete Bookıng"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/activityManageEditBooking" />
+        app:layout_constraintTop_toBottomOf="@+id/activityManagerAddBooking" />
 </android.support.constraint.ConstraintLayout>
