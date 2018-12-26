@@ -10,6 +10,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -31,14 +33,17 @@ import java.util.Calendar;
 import java.util.List;
 
 
-public class FilterTripActivity extends AppCompatActivity implements View.OnClickListener {
+public class FilterTripActivity extends AppCompatActivity  {
 
     Spinner fromSpinner,toSpinner;
     TextView dateChosenGo,dateChosenTurn,returnDateTexView;
     Button setDate,list,setDateReturn;
     Switch oneWay;
     Context context=this;
-
+    String Cities[] = {"Istanbul", "Ankara", "Izmir", "Diyarbakır"};
+    ArrayAdapter<String> adapter;
+    String recordFrom = "";
+    String recordWhere = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,10 +60,65 @@ public class FilterTripActivity extends AppCompatActivity implements View.OnClic
         setDateReturn=findViewById(R.id.setDateButton2);
         returnDateTexView = findViewById(R.id.returnDateTextView);
 
-        setDateReturn.setOnClickListener(this);
-        setDate.setOnClickListener(this);
+        setDateReturn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+                DatePickerDialog dpd = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // Aylar DatePicker Objesinde 0'dan başladığı için 1 ekliyoruz.
+                        month+=1;
+                        //TextView'a kullanıcının seçtiği tarihi set ediyoruz.
 
+                        dateChosenTurn.setText(dayOfMonth + "/" + month + "/" + year);
+
+                    }
+                },year,month,day);
+                dpd.setButton(DatePickerDialog.BUTTON_POSITIVE,"Select",dpd);
+                dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE,"Cancel",dpd);
+
+                if(!((Activity) FilterTripActivity.this).isFinishing())
+                {
+                    dpd.show();
+                }
+
+            }
+        });
+
+        setDate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                final Calendar calendar = Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+                DatePickerDialog dpd = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+                        // Aylar DatePicker Objesinde 0'dan başladığı için 1 ekliyoruz.
+                        month+=1;
+                        //TextView'a kullanıcının seçtiği tarihi set ediyoruz.
+
+                        dateChosenGo.setText(dayOfMonth + "/" + month + "/" + year);
+
+                    }
+                },year,month,day);
+                dpd.setButton(DatePickerDialog.BUTTON_POSITIVE,"Select",dpd);
+                dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE,"Cancel",dpd);
+
+                if(!((Activity) FilterTripActivity.this).isFinishing())
+                {
+                    dpd.show();
+                }
+            }
+        });
 
         oneWay.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
@@ -70,10 +130,10 @@ public class FilterTripActivity extends AppCompatActivity implements View.OnClic
                   setDateReturn.setVisibility(View.VISIBLE);
                   dateChosenTurn.setVisibility(View.VISIBLE);
                   returnDateTexView.setVisibility(View.VISIBLE);
-
                 }
-
                  else{
+
+                    // If the switch button is off Two-Way Ticket
                     setDateReturn.setVisibility(View.INVISIBLE);
                     dateChosenTurn.setVisibility(View.INVISIBLE);
                     returnDateTexView.setVisibility(View.INVISIBLE);
@@ -89,7 +149,6 @@ public class FilterTripActivity extends AppCompatActivity implements View.OnClic
         super.onNewIntent(intent);
     }
 
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater menuInflater = getMenuInflater();
@@ -99,8 +158,6 @@ public class FilterTripActivity extends AppCompatActivity implements View.OnClic
         return super.onCreateOptionsMenu(menu);
 
     }
-
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if( item.getItemId() == R.id.Logout) {
@@ -118,33 +175,6 @@ public class FilterTripActivity extends AppCompatActivity implements View.OnClic
         }
         return super.onOptionsItemSelected(item);
     }
-
-    @Override
-    public void onClick(View v) {
-        final Calendar calendar = Calendar.getInstance();
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-
-        DatePickerDialog dpd = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
-            @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
-                // Aylar DatePicker Objesinde 0'dan başladığı için 1 ekliyoruz.
-                month+=1;
-                //TextView'a kullanıcının seçtiği tarihi set ediyoruz.
-                dateChosenGo.setText(dayOfMonth+ "/" +month+ "/" +year);
-            }
-        },year,month,day);
-        dpd.setButton(DatePickerDialog.BUTTON_POSITIVE,"Select",dpd);
-        dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE,"Cancel",dpd);
-
-        if(!((Activity) FilterTripActivity.this).isFinishing())
-        {
-            dpd.show();
-        }
-    }
-
-
 
 }
 
