@@ -44,7 +44,7 @@ public class PostActivityForCustomer extends ArrayAdapter<String> {
 
 
         objectIdText.setText(objectId.get(position));
-        fromText.setText("---->");
+        fromText.setText("--->");
         whereText.setText(where.get(position));
         dateText.setText(date.get(position));
 

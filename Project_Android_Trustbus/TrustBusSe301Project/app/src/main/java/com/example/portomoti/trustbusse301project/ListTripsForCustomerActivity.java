@@ -96,7 +96,7 @@ public class ListTripsForCustomerActivity extends AppCompatActivity {
 
                 
                  selected = (listViewCustomer.getItemAtPosition(position).toString());
-                objectIdText.setText(selected,TextView.BufferType.EDITABLE);
+              //  objectIdText.setText(selected,TextView.BufferType.EDITABLE);
 
                 Intent i = new Intent(getApplicationContext(),PaymentActivity.class);
                 //String example;
