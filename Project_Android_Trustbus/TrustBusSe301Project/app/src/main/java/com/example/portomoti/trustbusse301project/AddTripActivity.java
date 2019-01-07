@@ -207,6 +207,7 @@ public class AddTripActivity extends AppCompatActivity {
             object.put("from", recordFrom);
             object.put("destination", recordWhere);
             object.put("date", dateText.getText().toString());
+            object.put("deleted", false);
             object.put("delete", false);
             object.put("busID", recordPlate);
             object.saveInBackground(new SaveCallback() {
