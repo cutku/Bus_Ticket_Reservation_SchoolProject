@@ -34,6 +34,7 @@ public class ListTripsForCustomerActivity extends AppCompatActivity {
     ArrayList<String> fromFromParse;
     ArrayList<String> whereFromParse;
     ArrayList<String> dateFromParse;//String ---> DATE
+    String selected=null;
 
     PostActivityForCustomer postActivityForCustomer ;
     Button buyTrip;
@@ -94,8 +95,14 @@ public class ListTripsForCustomerActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 
-                String selected = (listViewCustomer.getItemAtPosition(position).toString());
+                 selected = (listViewCustomer.getItemAtPosition(position).toString());
                 objectIdText.setText(selected,TextView.BufferType.EDITABLE);
+
+                Intent i = new Intent(getApplicationContext(),PaymentActivity.class);
+                //String example;
+                i.putExtra("STRING_I_NEED",selected.toString());
+                startActivity(i);
+
 
             }
         });

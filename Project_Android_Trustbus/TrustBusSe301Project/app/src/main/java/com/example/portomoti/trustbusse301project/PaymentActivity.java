@@ -23,7 +23,7 @@ public class PaymentActivity extends AppCompatActivity {
     //String objectId = getIntent().getStringExtra("objectId");
     Button buy;
     TextView cardnumber,cvc,name,surname;
-
+    String newString;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,6 +34,20 @@ public class PaymentActivity extends AppCompatActivity {
         cvc= findViewById(R.id.activityPaymentCVC);
         surname = findViewById(R.id.activityPaymentSurname);
         name = findViewById(R.id.activityPaymentName);
+
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString= null;
+            } else {
+                newString= extras.getString("STRING_I_NEED");
+                name.setText(newString,TextView.BufferType.EDITABLE);
+            }
+        } else {
+            newString= (String) savedInstanceState.getSerializable("STRING_I_NEED");
+        }
+
     }
 
     public void makePayment(View view){

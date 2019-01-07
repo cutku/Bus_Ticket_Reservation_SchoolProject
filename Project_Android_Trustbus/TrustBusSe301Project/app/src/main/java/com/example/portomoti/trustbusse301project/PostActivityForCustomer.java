@@ -19,7 +19,7 @@ public class PostActivityForCustomer extends ArrayAdapter<String> {
     private final ArrayList<String> date; //String ---> DATE
     private final Activity context;
 
-    public PostActivityForCustomer(ArrayList<String> objectId, ArrayList<String> from, ArrayList<String> where, ArrayList<String> date, Activity context){
+    public PostActivityForCustomer(ArrayList<String> from, ArrayList<String> objectId, ArrayList<String> where, ArrayList<String> date, Activity context){
 //String ----> Date
         super(context,R.layout.custom_view_list_trips_for_customer,from);
 
