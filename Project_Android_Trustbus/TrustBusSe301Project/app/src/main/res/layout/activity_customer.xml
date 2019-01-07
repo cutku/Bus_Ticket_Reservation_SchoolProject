@@ -36,6 +36,7 @@
         android:layout_marginTop="31dp"
         android:layout_marginBottom="69dp"
         android:text="Consumer Page"
+        android:textSize="25dp"
         app:layout_constraintBottom_toTopOf="@+id/customerActivitiyManageAccountButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

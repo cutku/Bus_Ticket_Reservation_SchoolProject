@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.LogOutCallback;
@@ -47,6 +48,10 @@ public class CustomerActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer);
+        TextView userEmail = findViewById(R.id.textView3);
+        String parseUserEmail = ParseUser.getCurrentUser().getEmail();
+        userEmail.setText( parseUserEmail,TextView.BufferType.EDITABLE);
+
     }
 
     public void manageAccount(View view){

@@ -1,5 +1,6 @@
 package com.example.portomoti.trustbusse301project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
+import com.parse.GetCallback;
 import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseQuery;
@@ -23,7 +25,7 @@ public class PaymentActivity extends AppCompatActivity {
     //String objectId = getIntent().getStringExtra("objectId");
     Button buy;
     TextView cardnumber,cvc,name,surname;
-    String newString;
+    String newString, objectFrom, objectWhere,objectDate;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,18 +37,32 @@ public class PaymentActivity extends AppCompatActivity {
         surname = findViewById(R.id.activityPaymentSurname);
         name = findViewById(R.id.activityPaymentName);
 
-
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 newString= null;
             } else {
                 newString= extras.getString("STRING_I_NEED");
-                name.setText(newString,TextView.BufferType.EDITABLE);
+
+                ParseQuery<ParseObject> queryN = ParseQuery.getQuery("Trips");
+                queryN.getInBackground(newString, new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject object, ParseException e) {
+                        if (e != null) {
+                            e.printStackTrace();
+                        } else {
+                            objectFrom  = object.getString("from");
+                            objectWhere  = object.getString("destination");
+                            objectDate = object.getString("date");
+                        }
+                    }
+                });
             }
         } else {
             newString= (String) savedInstanceState.getSerializable("STRING_I_NEED");
         }
+
+
 
     }
 
@@ -69,11 +85,15 @@ public class PaymentActivity extends AppCompatActivity {
                     ParseUser usr= ParseUser.getCurrentUser();
                     ParseObject obj = new ParseObject("ticketUser");
                     obj.put("email",usr.getEmail());
-                    obj.put("from","Istanbul");
-                    obj.put("destination","Ankara");
-
+                    obj.put("from", objectFrom);
+                    obj.put("destination", objectWhere);
+                    obj.put("date", objectDate);
                     obj.saveInBackground();
-                    Toast.makeText(getApplicationContext(),"OKKKKK",Toast.LENGTH_LONG).show();
+
+                    Toast.makeText(getApplicationContext(),"Payment Succesfull!",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),CustomerActivity.class);
+                    startActivity(intent);
+
                 }
             }
         });
