@@ -130,7 +130,33 @@ public class DeleteBookingActivity extends AppCompatActivity {
                                 Toast.makeText(getApplicationContext(), e.getLocalizedMessage(), Toast.LENGTH_LONG).show();
                             } else {
                                 Toast.makeText(getApplicationContext(), "Changes Saved", Toast.LENGTH_LONG).show();
+                                ParseUser usr = ParseUser.getCurrentUser();
+
+                                int usrType = usr.getInt("userType");
+
+
+                                //intent for Admin Login
+                                if (usrType == 1) {
+                                    //intent
+                                    Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
+                                    startActivity(intent);
+
+                                }
+                                //intent for Manager Login
+                                else if (usrType == 2) {
+                                    //intent
+                                    Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                                    startActivity(intent);
+
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "User Type Undefined", Toast.LENGTH_LONG).show();
+                                    Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                                    startActivity(intent);
+                                }
+
+
                             }
+
                         }
                     });
                 }

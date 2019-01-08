@@ -55,7 +55,33 @@ public class DeleteManagerActivity extends AppCompatActivity {
                             String firstItemId = objects.get(0).getObjectId();
 
                             Toast.makeText(DeleteManagerActivity.this, firstItemId , Toast.LENGTH_SHORT).show();
+                            ParseUser usr = ParseUser.getCurrentUser();
+
+                            int usrType = usr.getInt("userType");
+
+
+                            //intent for Admin Login
+                            if (usrType == 1) {
+                                //intent
+                                Intent intent = new Intent(getApplicationContext(), ManagerActivity.class);
+                                startActivity(intent);
+
+                            }
+                            //intent for Manager Login
+                            else if (usrType == 2) {
+                                //intent
+                                Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                                startActivity(intent);
+
+                            } else {
+                                Toast.makeText(getApplicationContext(), "User Type Undefined", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(getApplicationContext(), SignUpActivity.class);
+                                startActivity(intent);
+                            }
+
+
                         }
+
                     });
 
 
