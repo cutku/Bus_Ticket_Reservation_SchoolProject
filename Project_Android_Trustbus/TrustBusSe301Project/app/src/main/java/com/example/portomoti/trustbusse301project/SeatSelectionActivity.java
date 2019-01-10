@@ -42,7 +42,8 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
                  + "_______/";
 
     List<TextView> seatViewList = new ArrayList<>();
-    int seatSize = 44;
+    int seatSizeFromDatabase;
+    int seatSize;
     int seatGaping = 10;
 
     int STATUS_AVAILABLE = 1;
@@ -81,14 +82,15 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
                 newStringSeatSelection= null;
             } else {
                 newStringSeatSelection= extras.getString("STRING_I_NEED");
-        ParseQuery<ParseObject> queryN = ParseQuery.getQuery("Trips");
-        queryN.getInBackground(newStringSeatSelection, new GetCallback<ParseObject>() {
+        ParseQuery<ParseObject> queryM = ParseQuery.getQuery("Trips");
+        queryM.getInBackground(newStringSeatSelection, new GetCallback<ParseObject>() {
             @Override
             public void done(ParseObject object, ParseException e) {
                 if (e != null) {
                     e.printStackTrace();
                 } else {
-                    seatSize  = object.getInt("seatSize");
+                    seatSizeFromDatabase  = object.getInt("seatSizeFromDatabase");
+                    System.out.println("Seatsadadsadadasdsadsadasas===" + seatSizeFromDatabase);
                 }
             }
         });
@@ -97,7 +99,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
             newStringSeatSelection= (String) savedInstanceState.getSerializable("STRING_I_NEED");
         }
 
-        System.out.println("Seatsadadsadadasdsadsadasas" + seatSize);
+
 
         //bitiş
         /*
