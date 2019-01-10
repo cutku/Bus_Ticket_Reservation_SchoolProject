@@ -43,7 +43,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
 
     List<TextView> seatViewList = new ArrayList<>();
     int seatSizeFromDatabase;
-    int seatSize;
+    int seatSize=44;
     int seatGaping = 10;
 
     int STATUS_AVAILABLE = 1;
