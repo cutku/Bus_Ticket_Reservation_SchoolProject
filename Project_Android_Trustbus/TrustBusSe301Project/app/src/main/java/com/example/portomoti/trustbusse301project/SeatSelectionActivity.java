@@ -75,25 +75,27 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
 
 
 
-        //object ID
+
+
+        //object ID Get Capacity
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 newStringSeatSelection= null;
             } else {
                 newStringSeatSelection= extras.getString("STRING_I_NEED");
-        ParseQuery<ParseObject> queryM = ParseQuery.getQuery("Trips");
-        queryM.getInBackground(newStringSeatSelection, new GetCallback<ParseObject>() {
-            @Override
-            public void done(ParseObject object, ParseException e) {
-                if (e != null) {
-                    e.printStackTrace();
-                } else {
-                    seatSizeFromDatabase  = object.getInt("seatSizeFromDatabase");
-                    System.out.println("Seatsadadsadadasdsadsadasas===" + seatSizeFromDatabase);
-                }
-            }
-        });
+                ParseQuery<ParseObject> queryM = ParseQuery.getQuery("Trips");
+                queryM.getInBackground(newStringSeatSelection, new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject object, ParseException e) {
+                        if (e != null) {
+                            e.printStackTrace();
+                        } else {
+                            seatSizeFromDatabase  = object.getInt("seatSizeFromDatabase");
+                            System.out.println("Seatsadadsadadasdsadsadasas===" + seatSizeFromDatabase);
+                        }
+                    }
+                });
             }
         } else {
             newStringSeatSelection= (String) savedInstanceState.getSerializable("STRING_I_NEED");
@@ -101,32 +103,31 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
 
 
 
-        //bitiş
-        /*
-        ParseQuery<ParseObject> query= ParseQuery.getQuery("Trips");
-        query.whereEqualTo("objectId",intenttençekilenobjiD); // diğerlerine de eklencek ---->>> 9:31Pm eklenince Silincek
-       query.findInBackground(new FindCallback<ParseObject>() {
-            @Override
-            public void done(List<ParseObject> objects, ParseException e) {
-                if(e!=null){
-                    Toast.makeText(getApplicationContext(),e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
-
-                }else{
-
-                    ParseUser usr= ParseUser.getCurrentUser();
-                    ParseObject obj = new ParseObject("ticketUser");
-                //    obj.put("date", objectDate);
-                    obj.saveInBackground();
-
-                    Toast.makeText(getApplicationContext(),"Payment Succesfull!",Toast.LENGTH_LONG).show();
-                    Intent intent = new Intent(getApplicationContext(),CustomerActivity.class);
-                    startActivity(intent);
-
-                }
+        //Push/Update Capacity
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newStringSeatSelection= null;
+            } else {
+                newStringSeatSelection= extras.getString("STRING_I_NEED");
+                ParseQuery<ParseObject> queryP = ParseQuery.getQuery("Trips");
+                queryP.getInBackground(newStringSeatSelection, new GetCallback<ParseObject>() {
+                    @Override
+                    public void done(ParseObject object, ParseException e) {
+                        if (e != null) {
+                            e.printStackTrace();
+                        } else {
+                            object.put("seatSizeFromDatabase",seatSize);
+                            System.out.println("obj puttet klajdklsjaskld===" + seatSizeFromDatabase);
+                        }
+                    }
+                });
             }
-        });
-        */
-        //başlangıç
+        } else {
+            newStringSeatSelection= (String) savedInstanceState.getSerializable("STRING_I_NEED");
+        }
+
+        
 
 
         int count = 0;
