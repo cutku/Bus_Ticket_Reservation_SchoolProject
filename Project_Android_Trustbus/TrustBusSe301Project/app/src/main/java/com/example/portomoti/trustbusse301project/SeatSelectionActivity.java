@@ -127,9 +127,9 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
             newStringSeatSelection= (String) savedInstanceState.getSerializable("STRING_I_NEED");
         }
 
+
+
         
-
-
         int count = 0;
 
         for (int index = 0; index < seats.length(); index++) {
