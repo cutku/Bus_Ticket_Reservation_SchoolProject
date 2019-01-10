@@ -2,6 +2,7 @@ package com.example.portomoti.trustbusse301project;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import com.parse.ParseException;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
+import android.widget.TimePicker;
 
 import java.util.Calendar;
 
@@ -30,10 +32,12 @@ public class AddTripActivity extends AppCompatActivity {
     ArrayAdapter<String> adapter,adapter2;
 
     Button calenderButton;
+    Button timeButton;
     String recordFrom = "";
     String recordWhere = "";
     String recordPlate = "";
     TextView dateText;
+    TextView timeText;
     Context context=this;
 
     String DateALL;
@@ -63,7 +67,9 @@ public class AddTripActivity extends AppCompatActivity {
         fromSpinner = findViewById(R.id.addTripActivityFromSpinner);
         whereSpinner = findViewById(R.id.addTripActivityWhereSpinner);
         calenderButton = findViewById(R.id.addTripActivityDateButton);
+        timeButton=findViewById(R.id.addTripActivityTimeButton);
         dateText = findViewById(R.id.addTripActivityTextView);
+        timeText=findViewById(R.id.addTripActivityTextViewTime);
         busplate = findViewById(R.id.addTripActivityBusPlateSpinner);
 
         adapter=new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1,Cities);
@@ -99,6 +105,32 @@ public class AddTripActivity extends AppCompatActivity {
             }
 
 
+        });
+
+
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar callendar = Calendar.getInstance();
+                int hour = callendar.get(Calendar.HOUR_OF_DAY);
+                int minute = callendar.get(Calendar.MINUTE);
+
+                TimePickerDialog tpd = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        // hourOfDay ve minute değerleri seçilen saat değerleridir.
+                        // Edittextte bu değerleri gösteriyoruz.
+                        timeText.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, true);
+
+
+// dialog penceresinin button bilgilerini ayarlıyoruz ve ekranda gösteriyoruz.
+                tpd.setButton(TimePickerDialog.BUTTON_POSITIVE, "Seç", tpd);
+                tpd.setButton(TimePickerDialog.BUTTON_NEGATIVE, "İptal", tpd);
+                tpd.show();
+            }
         });
 
         busplate.setAdapter(adapter2);
@@ -207,6 +239,7 @@ public class AddTripActivity extends AppCompatActivity {
             object.put("from", recordFrom);
             object.put("destination", recordWhere);
             object.put("date", dateText.getText().toString());
+            object.put("time", timeText.getText().toString());
             object.put("deleted", false);
             object.put("delete", false);
             object.put("busID", recordPlate);

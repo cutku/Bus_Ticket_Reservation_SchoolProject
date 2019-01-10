@@ -23,10 +23,10 @@
     <Spinner
         android:id="@+id/addTripActivityFromSpinner"
         android:layout_width="0dp"
-        android:layout_height="48dp"
+        android:layout_height="0dp"
         android:layout_marginTop="51dp"
-        android:layout_marginBottom="47dp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView8"
+        android:layout_marginBottom="201dp"
+        app:layout_constraintBottom_toTopOf="@+id/addTripActivityTextViewTime"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -63,24 +63,28 @@
 
     <Button
         android:id="@+id/addTripActivityDateButton"
-        android:layout_width="144dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="14dp"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="55dp"
         android:onClick="goCalender"
-        android:text="Select Departure Date"
+        android:text="Select Date"
         app:layout_constraintBottom_toTopOf="@+id/addTripActivityAddTripButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addTripActivityTimeButton"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addTripActivityTextView" />
 
     <TextView
         android:id="@+id/addTripActivityTextView"
-        android:layout_width="144dp"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="18dp"
-        android:text="Date Time"
+        android:layout_marginStart="7dp"
+        android:layout_marginEnd="69dp"
+        android:layout_marginBottom="11dp"
+        android:text="Date"
         app:layout_constraintBottom_toTopOf="@+id/addTripActivityDateButton"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/addTripActivityTextViewTime"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/addTripActivityBusPlateSpinner" />
 
@@ -97,10 +101,34 @@
         android:id="@+id/addTripActivityBusPlateSpinner"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginBottom="9dp"
         app:layout_constraintBottom_toTopOf="@+id/addTripActivityTextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+    <TextView
+        android:id="@+id/addTripActivityTextViewTime"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="11dp"
+        android:text="Time"
+        app:layout_constraintBottom_toTopOf="@+id/addTripActivityTimeButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addTripActivityTextView"
+        app:layout_constraintTop_toBottomOf="@+id/addTripActivityFromSpinner" />
+
+    <Button
+        android:id="@+id/addTripActivityTimeButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="35dp"
+        android:layout_marginBottom="118dp"
+        android:text="Select  Tıme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/addTripActivityDateButton"
+        app:layout_constraintTop_toBottomOf="@+id/addTripActivityTextViewTime" />
 
 </android.support.constraint.ConstraintLayout>
