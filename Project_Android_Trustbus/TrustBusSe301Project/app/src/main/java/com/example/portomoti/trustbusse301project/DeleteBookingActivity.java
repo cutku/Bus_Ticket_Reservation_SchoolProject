@@ -7,6 +7,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -33,6 +34,7 @@ public class DeleteBookingActivity extends AppCompatActivity {
     PostActivityForAdmin postActivityAdmin;
     Button deleteBooking;
     EditText objectIdText;
+    String selected=null;
 
 
     @Override
@@ -82,6 +84,21 @@ public class DeleteBookingActivity extends AppCompatActivity {
         dateFromParse = new ArrayList<>();
         postActivityAdmin = new PostActivityForAdmin(objectId, fromFromParse, whereFromParse, dateFromParse, this);
         listViewManager.setAdapter(postActivityAdmin);
+        listViewManager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                selected = (listViewManager.getItemAtPosition(position).toString());
+
+
+                objectIdText.setText(selected);
+
+
+            }
+        });
+
+
 
         download();
 
