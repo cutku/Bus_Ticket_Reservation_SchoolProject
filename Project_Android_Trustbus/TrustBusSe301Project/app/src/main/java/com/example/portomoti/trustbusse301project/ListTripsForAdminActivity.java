@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -35,6 +36,7 @@ public class ListTripsForAdminActivity extends AppCompatActivity {
     PostActivityForAdmin postActivityAdmin ;
     Button deleteTrip;
     EditText objectIdText;
+    String selected=null;
 
     @Override
     protected void onNewIntent(Intent intent) {
@@ -85,6 +87,19 @@ public class ListTripsForAdminActivity extends AppCompatActivity {
         postActivityAdmin= new PostActivityForAdmin(objectId,fromFromParse,whereFromParse,dateFromParse,this);
 
         listViewAdmin.setAdapter(postActivityAdmin);
+        listViewAdmin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                selected = (listViewAdmin.getItemAtPosition(position).toString());
+
+
+                objectIdText.setText(selected);
+
+
+            }
+        });
 
         download();
 
