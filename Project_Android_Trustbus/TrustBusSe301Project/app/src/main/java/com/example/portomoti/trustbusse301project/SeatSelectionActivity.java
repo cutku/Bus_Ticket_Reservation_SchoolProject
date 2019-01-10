@@ -17,6 +17,8 @@ import java.util.List;
 public class SeatSelectionActivity extends AppCompatActivity implements View.OnClickListener {
 
     ViewGroup layout;
+    TextView numberOfSelectedSeatsText;
+    int numberOfSelectedSeat=0;
 
     String seats = "AA____AA/"
                  + "AA____AA/"
@@ -46,7 +48,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
         setContentView(R.layout.activity_seat_selection);
 
         layout = findViewById(R.id.layoutSeat);
-
+        numberOfSelectedSeatsText=findViewById(R.id.textViewSelectedSeatsNumber);
         seats = "/" + seats;
 
         LinearLayout layoutSeat = new LinearLayout(this);
@@ -133,12 +135,20 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
     public void onClick(View view) {
 
         if ((int) view.getTag() == STATUS_AVAILABLE) {
+            if(numberOfSelectedSeat>=4){
+                Toast.makeText(getApplicationContext(),"You cannot Buy more than 4 seat",Toast.LENGTH_SHORT).show();
+            }
+
             if (selectedIds.contains(view.getId() + ",")) {
                 selectedIds = selectedIds.replace(+view.getId() + ",", "");
                 view.setBackgroundResource(R.drawable.ic_seats_book);
+                 numberOfSelectedSeat--;
+                 numberOfSelectedSeatsText.setText(""+numberOfSelectedSeat);
             } else {
                 selectedIds = selectedIds + view.getId() + ",";
                 view.setBackgroundResource(R.drawable.ic_seats_selected);
+                numberOfSelectedSeat++;
+                numberOfSelectedSeatsText.setText(""+numberOfSelectedSeat);
             }
         } else if ((int) view.getTag() == STATUS_BOOKED) {
             Toast.makeText(this, "Seat " + view.getId() + " is Booked", Toast.LENGTH_SHORT).show();
