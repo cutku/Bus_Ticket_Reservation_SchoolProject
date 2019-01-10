@@ -36,7 +36,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
     int seatGaping = 10;
 
     int STATUS_AVAILABLE = 1;
-    int STATUS_BOOKED = 2;
+    int STATUS_BOOKED = 4;
     int STATUS_RESERVED = 3;
     String selectedIds = "";
 
@@ -54,6 +54,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
         layoutSeat.setOrientation(LinearLayout.VERTICAL);
         layoutSeat.setLayoutParams(params);
         layoutSeat.setPadding(8 * seatGaping, 8 * seatGaping, 8 * seatGaping, 8 * seatGaping);
+
         layout.addView(layoutSeat);
 
         LinearLayout layout = null;

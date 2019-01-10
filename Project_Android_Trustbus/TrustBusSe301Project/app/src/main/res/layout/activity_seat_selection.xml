@@ -4,18 +4,83 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".SeatSelectionActivity">
+    tools:context=".SeatSelectionActivity"
+    tools:layout_editor_absoluteY="81dp">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:scrollbars="vertical">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:scrollbars="vertical">
 
-        <HorizontalScrollView
-            android:id="@+id/layoutSeat"
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent" />
+    <HorizontalScrollView
+        android:id="@+id/layoutSeat"
+        android:layout_width="380dp"
+        android:layout_height="382dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-    </ScrollView>
+    </HorizontalScrollView>
+
+    <ImageView
+        android:id="@+id/imageViewBooked"
+        android:layout_width="35dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layoutSeat"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_seats_booked" />
+
+    <ImageView
+        android:id="@+id/imageViewAvaible"
+        android:layout_width="35dp"
+        android:layout_height="26dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/avaibleTextView"
+        app:layout_constraintTop_toBottomOf="@+id/layoutSeat"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_seats_book" />
+
+    <TextView
+        android:id="@+id/avaibleTextView"
+        android:layout_width="49dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="8dp"
+        android:text="Booked Seats"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/imageViewBooked"
+        app:layout_constraintTop_toBottomOf="@+id/layoutSeat"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/textView17"
+        android:layout_width="57dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:text="Avaible Seat"
+        android:textColor="@android:color/black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/imageViewAvaible"
+        app:layout_constraintTop_toBottomOf="@+id/layoutSeat"
+        app:layout_constraintVertical_bias="0.0" />
+
 
 </android.support.constraint.ConstraintLayout>
