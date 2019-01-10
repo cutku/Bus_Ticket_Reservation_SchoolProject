@@ -2,6 +2,7 @@ package com.example.portomoti.trustbusse301project;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.parse.Parse;
@@ -28,9 +30,11 @@ public class AddBookingActivity extends AppCompatActivity {
     Spinner fromSpinner, destinationSpinner;
     TextView email;
     TextView dateText;
+    TextView timeText;
     String Cities[] = {"Istanbul", "Ankara", "Izmir", "Diyarbakır"};
     ArrayAdapter<String> adapter;
     Button calendarButton;
+    Button timeButton;
     String recordFrom = "";
     String recordDestination = "";
     Context context=this;
@@ -58,6 +62,8 @@ public class AddBookingActivity extends AppCompatActivity {
         destinationSpinner = findViewById(R.id.addBookingActivityDestinationSpinner);
         calendarButton = findViewById(R.id.addBookingActivityDateButton);
         dateText=findViewById(R.id.addBookingActivityTextView);
+        timeText=findViewById(R.id.addBookingActivityTimeView);
+        timeButton=findViewById(R.id.addBookingActivityTimeButton);
 
 
 
@@ -74,7 +80,7 @@ public class AddBookingActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month += 1;
-                        dateText.setText(day + "/" + month + "/" + year+ " 12:00");
+                        dateText.setText(day + "/" + month + "/" + year);
 
                     }
 
@@ -91,6 +97,33 @@ public class AddBookingActivity extends AppCompatActivity {
 
 
         });
+
+
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar callendar = Calendar.getInstance();
+                int hour = callendar.get(Calendar.HOUR_OF_DAY);
+                int minute = callendar.get(Calendar.MINUTE);
+
+                TimePickerDialog tpd = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        // hourOfDay ve minute değerleri seçilen saat değerleridir.
+                        // Edittextte bu değerleri gösteriyoruz.
+                        timeText.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, true);
+
+
+// dialog penceresinin button bilgilerini ayarlıyoruz ve ekranda gösteriyoruz.
+                tpd.setButton(TimePickerDialog.BUTTON_POSITIVE, "Seç", tpd);
+                tpd.setButton(TimePickerDialog.BUTTON_NEGATIVE, "İptal", tpd);
+                tpd.show();
+            }
+        });
+
         adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, Cities);
 
 
@@ -164,6 +197,7 @@ public class AddBookingActivity extends AppCompatActivity {
             object.put("from", recordFrom);
             object.put("where", recordDestination);
             object.put("date", dateText.getText().toString());
+            object.put("time",timeText.getText().toString());
             object.saveInBackground(new SaveCallback() {
                 @Override
                 public void done(ParseException e) {
