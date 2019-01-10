@@ -82,8 +82,10 @@ public class DeleteBookingActivity extends AppCompatActivity {
         fromFromParse = new ArrayList<>();
         whereFromParse = new ArrayList<>();
         dateFromParse = new ArrayList<>();
+
         postActivityAdmin = new PostActivityForAdmin(objectId, fromFromParse, whereFromParse, dateFromParse, this);
         listViewManager.setAdapter(postActivityAdmin);
+
         listViewManager.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -97,11 +99,7 @@ public class DeleteBookingActivity extends AppCompatActivity {
 
             }
         });
-
-
-
         download();
-
     }
     public void download(){
         ParseQuery<ParseObject> query= ParseQuery.getQuery("Ticket");

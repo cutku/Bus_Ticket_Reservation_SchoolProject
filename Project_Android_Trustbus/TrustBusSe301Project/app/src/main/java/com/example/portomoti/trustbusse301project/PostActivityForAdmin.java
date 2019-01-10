@@ -19,12 +19,12 @@ public class PostActivityForAdmin extends ArrayAdapter<String> {
     private final ArrayList<String> date; //String ---> DATE
     private final Activity context;
 
-    public PostActivityForAdmin(ArrayList<String> objectId, ArrayList<String> from, ArrayList<String> where, ArrayList<String> date, Activity context){
+    public PostActivityForAdmin(ArrayList<String> from, ArrayList<String> objectId, ArrayList<String> where, ArrayList<String> date, Activity context){
 //String ----> Date
         super(context,R.layout.custom_view_list_trips_for_admin,from);
 
-        this.objectId=objectId;
         this.from=from;
+        this.objectId=objectId;
         this.where=where;
         this.date=date;
         this.context=context;
@@ -43,8 +43,8 @@ public class PostActivityForAdmin extends ArrayAdapter<String> {
         TextView dateText=customViewAdmin.findViewById(R.id.custom_view_for_admin_date_text);
 
 
-        objectIdText.setText(objectId.get(position));
         fromText.setText(from.get(position));
+        objectIdText.setText(objectId.get(position));
         whereText.setText(where.get(position));
         dateText.setText(date.get(position));
 
