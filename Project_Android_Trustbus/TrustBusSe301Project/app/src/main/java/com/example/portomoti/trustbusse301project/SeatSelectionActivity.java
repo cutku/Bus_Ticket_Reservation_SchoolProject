@@ -1,5 +1,6 @@
 package com.example.portomoti.trustbusse301project;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +11,13 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.parse.FindCallback;
+import com.parse.GetCallback;
+import com.parse.ParseException;
+import com.parse.ParseObject;
+import com.parse.ParseQuery;
+import com.parse.ParseUser;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,6 +50,9 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
     int STATUS_RESERVED = 3;
     String selectedIds = "";
 
+    String newStringSeatSelection;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,6 +71,61 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
         layout.addView(layoutSeat);
 
         LinearLayout layout = null;
+
+
+
+        //object ID
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newStringSeatSelection= null;
+            } else {
+                newStringSeatSelection= extras.getString("STRING_I_NEED");
+        ParseQuery<ParseObject> queryN = ParseQuery.getQuery("Trips");
+        queryN.getInBackground(newStringSeatSelection, new GetCallback<ParseObject>() {
+            @Override
+            public void done(ParseObject object, ParseException e) {
+                if (e != null) {
+                    e.printStackTrace();
+                } else {
+                    seatSize  = object.getInt("seatSize");
+                }
+            }
+        });
+            }
+        } else {
+            newStringSeatSelection= (String) savedInstanceState.getSerializable("STRING_I_NEED");
+        }
+
+        System.out.println("Seatsadadsadadasdsadsadasas" + seatSize);
+
+        //bitiş
+        /*
+        ParseQuery<ParseObject> query= ParseQuery.getQuery("Trips");
+        query.whereEqualTo("objectId",intenttençekilenobjiD); // diğerlerine de eklencek ---->>> 9:31Pm eklenince Silincek
+       query.findInBackground(new FindCallback<ParseObject>() {
+            @Override
+            public void done(List<ParseObject> objects, ParseException e) {
+                if(e!=null){
+                    Toast.makeText(getApplicationContext(),e.getLocalizedMessage(),Toast.LENGTH_LONG).show();
+
+                }else{
+
+                    ParseUser usr= ParseUser.getCurrentUser();
+                    ParseObject obj = new ParseObject("ticketUser");
+                //    obj.put("date", objectDate);
+                    obj.saveInBackground();
+
+                    Toast.makeText(getApplicationContext(),"Payment Succesfull!",Toast.LENGTH_LONG).show();
+                    Intent intent = new Intent(getApplicationContext(),CustomerActivity.class);
+                    startActivity(intent);
+
+                }
+            }
+        });
+        */
+        //başlangıç
+
 
         int count = 0;
 
