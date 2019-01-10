@@ -30,15 +30,16 @@
         <activity android:name=".DeleteTripActivity" />
         <activity android:name=".ListTripsActivity" />
         <activity android:name=".CalenderActivity" />
-        <activity android:name=".FilterTripActivity"></activity>
-        <activity android:name=".ListTripsForAdminActivity"></activity>
-        <activity android:name=".CalenderActivityUpdate"></activity>
-        <activity android:name=".ListTripsForAdminForUpdateActivity"></activity>
-        <activity android:name=".ManageBookingActivity"></activity>
-        <activity android:name=".AddBookingActivity"></activity>
-        <activity android:name=".ListTripsForCustomerActivity"></activity>
-        <activity android:name=".DeleteBookingActivity"></activity>
-        <activity android:name=".PaymentActivity"></activity>
-
+        <activity android:name=".FilterTripActivity" />
+        <activity android:name=".ListTripsForAdminActivity" />
+        <activity android:name=".CalenderActivityUpdate" />
+        <activity android:name=".ListTripsForAdminForUpdateActivity" />
+        <activity android:name=".ManageBookingActivity" />
+        <activity android:name=".AddBookingActivity" />
+        <activity android:name=".ListTripsForCustomerActivity" />
+        <activity android:name=".DeleteBookingActivity" />
+        <activity android:name=".PaymentActivity" />
+        <activity android:name=".SeatSelectionActivity"></activity>
     </application>
+
 </manifest>
