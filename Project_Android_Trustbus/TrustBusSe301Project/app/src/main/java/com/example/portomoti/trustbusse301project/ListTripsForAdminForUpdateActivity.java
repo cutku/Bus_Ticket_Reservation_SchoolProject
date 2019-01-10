@@ -3,6 +3,7 @@ package com.example.portomoti.trustbusse301project;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.parse.FindCallback;
@@ -42,8 +44,10 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
     ArrayList<String> whereFromParse;
     ArrayList<String> dateFromParse; //String ---> DATE
     PostActivityForAdmin postActivityAdmin ;
+    String selected=null;
 
     Context context=this;
+
 
     ArrayAdapter<String> adapter;
     Spinner fromSpinner,whereSpinner;
@@ -51,6 +55,10 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
     Button updateTrip,updateCelanderButton;
     EditText objectIdText;
     TextView dateText;
+    Button timeButton;
+    TextView timeText;
+
+
 
     String recordFrom = "";
     String recordWhere = "";
@@ -108,6 +116,8 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
         fromSpinner = findViewById(R.id.listTripsForAdminForUpdateFromSpinner);
         whereSpinner = findViewById(R.id.listTipsActivityForAdminForUpdateDestinationSpinner);
         updateCelanderButton = findViewById(R.id.listTripForAdminFroUpdateTripDepartureDateButton);
+        timeText=findViewById(R.id.listTripsForAdminTimeText);
+        timeButton=findViewById(R.id.listTripsForAdminTimeButton);
 
 
         updateCelanderButton.setOnClickListener(new View.OnClickListener() {
@@ -136,6 +146,31 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
                 {
                     dpd.show();
                 }
+            }
+        });
+
+        timeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar callendar = Calendar.getInstance();
+                int hour = callendar.get(Calendar.HOUR_OF_DAY);
+                int minute = callendar.get(Calendar.MINUTE);
+
+                TimePickerDialog tpd = new TimePickerDialog(context, new TimePickerDialog.OnTimeSetListener() {
+
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                        // hourOfDay ve minute değerleri seçilen saat değerleridir.
+                        // Edittextte bu değerleri gösteriyoruz.
+                        timeText.setText(hourOfDay + ":" + minute);
+                    }
+                }, hour, minute, true);
+
+
+// dialog penceresinin button bilgilerini ayarlıyoruz ve ekranda gösteriyoruz.
+                tpd.setButton(TimePickerDialog.BUTTON_POSITIVE, "Seç", tpd);
+                tpd.setButton(TimePickerDialog.BUTTON_NEGATIVE, "İptal", tpd);
+                tpd.show();
             }
         });
 
@@ -214,6 +249,19 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
         postActivityAdmin= new PostActivityForAdmin(objectId,fromFromParse,whereFromParse,dateFromParse,this);
 
         listViewAdmin.setAdapter(postActivityAdmin);
+        listViewAdmin.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                selected = (listViewAdmin.getItemAtPosition(position).toString());
+
+
+                objectIdText.setText(selected);
+
+
+            }
+        });
 
         download();
 
