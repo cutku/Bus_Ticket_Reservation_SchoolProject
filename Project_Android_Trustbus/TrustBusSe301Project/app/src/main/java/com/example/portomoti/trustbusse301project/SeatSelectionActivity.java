@@ -137,7 +137,13 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
             newStringSeatSelection= (String) savedInstanceState.getSerializable("STRING_I_NEED");
         }
 
-
+checkOut.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Intent i=new Intent(getApplicationContext(),PaymentActivity.class);
+        startActivity(i);
+    }
+});
 
 
         
@@ -223,6 +229,12 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
                 selectedIds = selectedIds.replace(+view.getId() + ",", "");
                 view.setBackgroundResource(R.drawable.ic_seats_book);
                  numberOfSelectedSeat--;
+                 seatSizeFromDatabase++;
+                 if(seatSizeFromDatabase==0){
+                     Toast.makeText(getApplicationContext(),"Not Enough Avaible Seat(s)",Toast.LENGTH_SHORT).show();
+                 }
+
+                currentCapacity.setText(""+seatSizeFromDatabase);
                  totalCost=basePrice*numberOfSelectedSeat;
                  totalPrice.setText(""+totalCost);
                  numberOfSelectedSeatsText.setText(""+numberOfSelectedSeat+" $");
@@ -230,6 +242,12 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
                 selectedIds = selectedIds + view.getId() + ",";
                 view.setBackgroundResource(R.drawable.ic_seats_selected);
                 numberOfSelectedSeat++;
+                if(seatSizeFromDatabase<=0){
+                    
+                    Toast.makeText(getApplicationContext(),"Not Enough Avaible Seat(s)",Toast.LENGTH_SHORT).show();
+                }
+                seatSizeFromDatabase--;
+                currentCapacity.setText(""+seatSizeFromDatabase);
                 totalCost=basePrice*numberOfSelectedSeat;
                 totalPrice.setText(""+totalCost);
                 numberOfSelectedSeatsText.setText(""+numberOfSelectedSeat+" $");
@@ -241,4 +259,6 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
         }
 
     }
+
+
 }
