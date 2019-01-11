@@ -40,6 +40,7 @@
         <activity android:name=".DeleteBookingActivity" />
         <activity android:name=".PaymentActivity" />
         <activity android:name=".SeatSelectionActivity"></activity>
+        <activity android:name=".GuestMenuActivity"></activity>
     </application>
 
 </manifest>

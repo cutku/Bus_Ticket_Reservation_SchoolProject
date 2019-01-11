@@ -236,7 +236,7 @@ public class SignUpActivity extends AppCompatActivity {
      * @param view
      */
     public void asGuest(View view){
-        Intent intent = new Intent(getApplicationContext(),SignUpSignUpActivity.class);
+        Intent intent = new Intent(getApplicationContext(),GuestMenuActivity.class);
         startActivity(intent);
     }
 }
