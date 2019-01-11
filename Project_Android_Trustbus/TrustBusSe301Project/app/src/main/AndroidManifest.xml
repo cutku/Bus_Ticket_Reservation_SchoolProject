@@ -41,6 +41,7 @@
         <activity android:name=".PaymentActivity" />
         <activity android:name=".SeatSelectionActivity"></activity>
         <activity android:name=".GuestMenuActivity"></activity>
+        <activity android:name=".listTripsForGuest"></activity>
     </application>
 
 </manifest>

@@ -27,7 +27,7 @@ public class GuestMenuActivity extends AppCompatActivity {
     }
 
     public void listTrips (View view){
-        Intent intent = new Intent(getApplicationContext(),ListTripsForCustomerActivity.class);
+        Intent intent = new Intent(getApplicationContext(),listTripsForGuest.class);
         startActivity(intent);
     }
     public void register(View view){
