@@ -89,7 +89,7 @@ public class AddTripActivity extends AppCompatActivity {
                     @Override
                     public void onDateSet(DatePicker view, int year, int month, int day) {
                         month += 1;
-                        dateText.setText(day + "/" + month + "/" + year);
+                        dateText.setText(day + "/" + month + "/" + year+ " 12:00");
 
                     }
 
