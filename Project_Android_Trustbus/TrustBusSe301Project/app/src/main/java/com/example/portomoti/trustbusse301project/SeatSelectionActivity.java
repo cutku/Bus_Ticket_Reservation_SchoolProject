@@ -141,12 +141,13 @@ checkOut.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
 
-    if(totalCost>=basePrice){
+    if(totalCost>=basePrice||numberOfSelectedSeat>0){
         Intent i=new Intent(getApplicationContext(),PaymentActivity.class);
+        i.putExtra("STRING_I_NEED_01",totalCost);
         startActivity(i);
+    }else {
+        Toast.makeText(getApplicationContext(), "0 seat selected !!", Toast.LENGTH_LONG).show();
     }
-    Toast.makeText(getApplicationContext(),"0 seat selected !!",Toast.LENGTH_LONG).show();
-
 
     }
 });

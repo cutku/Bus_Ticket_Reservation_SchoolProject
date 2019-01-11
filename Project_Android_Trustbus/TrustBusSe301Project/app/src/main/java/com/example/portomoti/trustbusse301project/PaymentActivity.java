@@ -60,6 +60,8 @@ public class PaymentActivity extends AppCompatActivity {
             }
         } else {
             newString= (String) savedInstanceState.getSerializable("STRING_I_NEED");
+            getCostIntent=(int) savedInstanceState.getSerializable("STRING_I_NEED_01");
+
         }
 
 
