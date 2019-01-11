@@ -29,6 +29,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
     TextView numberOfSelectedSeatsText,totalPrice,currentCapacity;
     int numberOfSelectedSeat=0;
     Button checkOut;
+    String objectIdFromBack;
 
     String seats = "AA____AA/"
                  + "AA____AA/"
@@ -84,7 +85,21 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
 
 
 
+        //
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                objectIdFromBack= null;
+            } else {
+                objectIdFromBack= extras.getString("STRING_I_NEED");
 
+
+            }
+        } else {
+            objectIdFromBack = (String) savedInstanceState.getSerializable("STRING_I_NEED");
+        }
+        //System.out.println("dadsadasdas"+objectIdFromBack);
+        //
 
         //object ID Get Capacity
         if (savedInstanceState == null) {
@@ -108,6 +123,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
             }
         } else {
             newStringSeatSelection= (String) savedInstanceState.getSerializable("STRING_I_NEED");
+
         }
 
 
@@ -145,11 +161,16 @@ checkOut.setOnClickListener(new View.OnClickListener() {
         Toast.makeText(getApplicationContext(), ""+numberOfSelectedSeat+" seat selected !!", Toast.LENGTH_LONG).show();
     }else {
 
+
+
+
         Intent i=new Intent(getApplicationContext(),PaymentActivity.class);
+        int lastAvaibleSeats= seatSizeFromDatabase;
+        i.putExtra("STRING_I_NEED_02",lastAvaibleSeats);
         i.putExtra("STRING_I_NEED_01",totalCost);
+        i.putExtra("STRING_I_NEED_03",objectIdFromBack);
         startActivity(i);
     }
-
     }
 });
 
