@@ -140,6 +140,7 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
                 },year,month,day);
                 dpd.setButton(DatePickerDialog.BUTTON_POSITIVE,"Select",dpd);
                 dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE,"Cancel",dpd);
+                dpd.getDatePicker().setMinDate(System.currentTimeMillis() - 1000);
 
 
                 if(!((Activity) ListTripsForAdminForUpdateActivity.this).isFinishing())
