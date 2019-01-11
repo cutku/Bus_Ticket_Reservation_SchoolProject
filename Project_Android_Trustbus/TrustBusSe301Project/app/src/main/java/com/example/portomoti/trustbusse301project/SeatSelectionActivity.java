@@ -228,7 +228,9 @@ checkOut.setOnClickListener(new View.OnClickListener() {
             if (selectedIds.contains(view.getId() + ",")) {
                 selectedIds = selectedIds.replace(+view.getId() + ",", "");
                 view.setBackgroundResource(R.drawable.ic_seats_book);
-                 numberOfSelectedSeat--;
+
+                    numberOfSelectedSeat--;
+                
                  seatSizeFromDatabase++;
                  if(seatSizeFromDatabase==0){
                      Toast.makeText(getApplicationContext(),"Not Enough Avaible Seat(s)",Toast.LENGTH_SHORT).show();
@@ -243,7 +245,7 @@ checkOut.setOnClickListener(new View.OnClickListener() {
                 view.setBackgroundResource(R.drawable.ic_seats_selected);
                 numberOfSelectedSeat++;
                 if(seatSizeFromDatabase<=0){
-                    
+
                     Toast.makeText(getApplicationContext(),"Not Enough Avaible Seat(s)",Toast.LENGTH_SHORT).show();
                 }
                 seatSizeFromDatabase--;
