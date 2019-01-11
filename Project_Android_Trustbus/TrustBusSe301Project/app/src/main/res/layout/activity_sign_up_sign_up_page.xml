@@ -11,12 +11,14 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="66dp"
+        android:layout_marginBottom="17dp"
         android:ems="10"
         android:hint="Surname"
         android:inputType="textPersonName"
-        app:layout_constraintBaseline_toBaselineOf="@+id/signUpSignUpActivityNameText"
+        app:layout_constraintBottom_toTopOf="@+id/signUpSignUpActivityEmailText"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/signUpSignUpActivityNameText" />
+        app:layout_constraintStart_toEndOf="@+id/signUpSignUpActivityNameText"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
     <TextView
         android:id="@+id/textView4"
@@ -25,7 +27,7 @@
         android:layout_marginTop="7dp"
         android:layout_marginBottom="14dp"
         android:text="Sign Up"
-        app:layout_constraintBottom_toTopOf="@+id/signUpSignUpActivityNameText"
+        app:layout_constraintBottom_toTopOf="@+id/signUpSignUpActivityActivitySurnameText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -36,14 +38,12 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="59dp"
         android:layout_marginEnd="15dp"
-        android:layout_marginBottom="18dp"
         android:ems="10"
         android:hint="Name"
         android:inputType="textPersonName"
-        app:layout_constraintBottom_toTopOf="@+id/signUpSignUpActivityEmailText"
+        app:layout_constraintBaseline_toBaselineOf="@+id/signUpSignUpActivityActivitySurnameText"
         app:layout_constraintEnd_toStartOf="@+id/signUpSignUpActivityActivitySurnameText"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/signUpSignUpActivityEmailText"
@@ -58,36 +58,34 @@
         app:layout_constraintBottom_toTopOf="@+id/signUpSignUpActivityRadioGroup"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpSignUpActivityNameText" />
+        app:layout_constraintTop_toBottomOf="@+id/signUpSignUpActivityActivitySurnameText" />
 
     <EditText
         android:id="@+id/signUpSignUpActivityDateOfBirthText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="59dp"
-        android:layout_marginEnd="5dp"
+        android:layout_marginEnd="13dp"
         android:ems="10"
-        android:hint="Date Of Bith"
+        android:hint="Date Of Birth"
         android:inputType="number"
-        app:layout_constraintBottom_toBottomOf="@+id/signUpSignUpActivityRadioGroup"
+        app:layout_constraintBottom_toTopOf="@+id/signUpDateButton"
         app:layout_constraintEnd_toStartOf="@+id/signUpSignUpActivityRadioGroup"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/signUpSignUpActivityRadioGroup" />
 
     <EditText
         android:id="@+id/signUpSignUpActivitySSNText"
-        android:layout_width="0dp"
+        android:layout_width="272dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="56dp"
-        android:layout_marginEnd="56dp"
-        android:layout_marginBottom="18dp"
+        android:layout_marginBottom="17dp"
         android:ems="10"
         android:hint="SSN"
         android:inputType="text"
         app:layout_constraintBottom_toTopOf="@+id/signUpSignUpActivityPasswordText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/signUpSignUpActivityRadioGroup" />
+        app:layout_constraintEnd_toEndOf="@+id/signUpDateButton"
+        app:layout_constraintStart_toEndOf="@+id/signUpDateButton"
+        app:layout_constraintTop_toBottomOf="@+id/signUpDateButton" />
 
     <EditText
         android:id="@+id/signUpSignUpActivityPasswordText"
@@ -120,10 +118,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="60dp"
-        android:layout_marginBottom="30dp"
-        app:layout_constraintBottom_toTopOf="@+id/signUpSignUpActivitySSNText"
+        app:layout_constraintBottom_toTopOf="@+id/signUpDateButton"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/signUpSignUpActivityDateOfBirthText"
+        app:layout_constraintStart_toEndOf="@+id/signUpDateButton"
         app:layout_constraintTop_toBottomOf="@+id/signUpSignUpActivityEmailText">
 
         <RadioButton
@@ -155,6 +152,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUpSignUpActivityPasswordText" />
+
+    <Button
+        android:id="@+id/signUpDateButton"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="17dp"
+        android:text="Select Date"
+        app:layout_constraintBottom_toTopOf="@+id/signUpSignUpActivitySSNText"
+        app:layout_constraintEnd_toStartOf="@+id/signUpSignUpActivityRadioGroup"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/signUpSignUpActivityRadioGroup" />
 
 
 </android.support.constraint.ConstraintLayout>

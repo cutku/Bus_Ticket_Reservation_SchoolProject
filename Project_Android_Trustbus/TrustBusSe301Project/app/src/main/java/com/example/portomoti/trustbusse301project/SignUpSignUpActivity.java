@@ -1,9 +1,14 @@
 package com.example.portomoti.trustbusse301project;
 
+import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -12,9 +17,13 @@ import com.parse.ParseException;
 import com.parse.ParseUser;
 import com.parse.SignUpCallback;
 
+import java.util.Calendar;
+
 public class SignUpSignUpActivity extends AppCompatActivity {
 
     EditText usernameTextFake, surnameText, emailText, passwordText ,dateofBirthText, ssnText,usernameText  ;
+    Button dateButton;
+    Context context=this;
     RadioButton male, female, acceptTerms;
 
     @Override
@@ -34,6 +43,7 @@ public class SignUpSignUpActivity extends AppCompatActivity {
         male = findViewById(R.id.signUpSignUpAccountActivityMaleRadioButton);
         female = findViewById(R.id.signUpSignUpAccountActivityFemaleRadioButton);
         passwordText = findViewById(R.id.signUpSignUpActivityPasswordText);
+        dateButton=findViewById(R.id.signUpDateButton);
 
 
 
@@ -49,7 +59,39 @@ public class SignUpSignUpActivity extends AppCompatActivity {
         */
 
 
+        dateButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Calendar calendar= Calendar.getInstance();
+                int year = calendar.get(Calendar.YEAR);
+                int month = calendar.get(Calendar.MONTH);
+                int day = calendar.get(Calendar.DAY_OF_MONTH);
 
+                final DatePickerDialog dpd= new DatePickerDialog(context,new DatePickerDialog.OnDateSetListener(){
+
+                    @Override
+                    public void onDateSet(DatePicker view, int year, int month, int day) {
+                        month += 1;
+
+                        dateofBirthText.setText(day + "/" + month + "/" + year);
+
+                    }
+
+                },year,month,day);
+                dpd.setButton(DatePickerDialog.BUTTON_POSITIVE,"Select",dpd);
+                dpd.setButton(DatePickerDialog.BUTTON_NEGATIVE,"Cancel",dpd);
+
+
+
+
+                if(!((Activity) SignUpSignUpActivity.this).isFinishing())
+                {
+                    dpd.show();
+                }
+            }
+
+
+        });
     }
 
 
@@ -57,6 +99,7 @@ public class SignUpSignUpActivity extends AppCompatActivity {
         ParseUser user = new ParseUser();
         user.put("name",usernameText.getText().toString());
         user.setUsername(usernameTextFake.getText().toString());
+        user.put("birthDay",dateofBirthText.getText().toString());
         user.setEmail(emailText.getText().toString());
         user.setPassword(passwordText.getText().toString());
         user.put("userSurname", surnameText.getText().toString());
