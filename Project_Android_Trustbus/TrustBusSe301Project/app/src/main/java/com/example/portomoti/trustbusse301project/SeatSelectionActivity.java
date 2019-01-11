@@ -140,8 +140,14 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
 checkOut.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
+
+    if(totalCost>=basePrice){
         Intent i=new Intent(getApplicationContext(),PaymentActivity.class);
         startActivity(i);
+    }
+    Toast.makeText(getApplicationContext(),"0 seat selected !!",Toast.LENGTH_LONG).show();
+
+
     }
 });
 
