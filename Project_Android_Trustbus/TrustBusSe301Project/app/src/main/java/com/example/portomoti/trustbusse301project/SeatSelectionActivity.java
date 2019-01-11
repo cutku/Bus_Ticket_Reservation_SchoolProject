@@ -142,7 +142,7 @@ checkOut.setOnClickListener(new View.OnClickListener() {
     public void onClick(View v) {
 
     if((totalCost>=basePrice) && (numberOfSelectedSeat>0) && (numberOfSelectedSeat>4)){
-        Toast.makeText(getApplicationContext(), "0 seat selected !!", Toast.LENGTH_LONG).show();
+        Toast.makeText(getApplicationContext(), ""+numberOfSelectedSeat+" seat selected !!", Toast.LENGTH_LONG).show();
     }else {
 
         Intent i=new Intent(getApplicationContext(),PaymentActivity.class);
