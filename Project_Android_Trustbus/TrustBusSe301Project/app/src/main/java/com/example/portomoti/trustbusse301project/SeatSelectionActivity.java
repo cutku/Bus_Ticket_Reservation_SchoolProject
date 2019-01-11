@@ -25,8 +25,9 @@ import java.util.List;
 public class SeatSelectionActivity extends AppCompatActivity implements View.OnClickListener {
 
     ViewGroup layout;
-    TextView numberOfSelectedSeatsText;
+    TextView numberOfSelectedSeatsText,totalPrice;
     int numberOfSelectedSeat=0;
+
 
     String seats = "AA____AA/"
                  + "AA____AA/"
@@ -45,7 +46,8 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
     int seatSizeFromDatabase;
     int seatSize=44;
     int seatGaping = 10;
-
+    int basePrice=50;
+    int totalCost=0;
     int STATUS_AVAILABLE = 1;
     int STATUS_BOOKED = 4;
     int STATUS_RESERVED = 3;
@@ -58,7 +60,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_selection);
-
+        totalPrice=findViewById(R.id.textViewTotalPrice);
         layout = findViewById(R.id.layoutSeat);
         numberOfSelectedSeatsText=findViewById(R.id.textViewSelectedSeatsNumber);
         seats = "/" + seats;
@@ -212,12 +214,16 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
                 selectedIds = selectedIds.replace(+view.getId() + ",", "");
                 view.setBackgroundResource(R.drawable.ic_seats_book);
                  numberOfSelectedSeat--;
-                 numberOfSelectedSeatsText.setText(""+numberOfSelectedSeat);
+                 totalCost=basePrice*numberOfSelectedSeat;
+                 totalPrice.setText(""+totalCost);
+                 numberOfSelectedSeatsText.setText(""+numberOfSelectedSeat+" $");
             } else {
                 selectedIds = selectedIds + view.getId() + ",";
                 view.setBackgroundResource(R.drawable.ic_seats_selected);
                 numberOfSelectedSeat++;
-                numberOfSelectedSeatsText.setText(""+numberOfSelectedSeat);
+                totalCost=basePrice*numberOfSelectedSeat;
+                totalPrice.setText(""+totalCost);
+                numberOfSelectedSeatsText.setText(""+numberOfSelectedSeat+" $");
             }
         } else if ((int) view.getTag() == STATUS_BOOKED) {
             Toast.makeText(this, "Seat " + view.getId() + " is Booked", Toast.LENGTH_SHORT).show();
