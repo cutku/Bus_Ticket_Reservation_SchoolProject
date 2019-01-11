@@ -317,6 +317,9 @@ public class ListTripsForAdminForUpdateActivity extends AppCompatActivity {
                     if(dateText != null) {
                         object.put("date", dateText.getText().toString());
                     }
+                    if(timeText!=null){
+                        object.put("time",timeText.getText().toString());
+                    }
 
                     object.saveInBackground(new SaveCallback() {
                         @Override

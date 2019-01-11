@@ -87,6 +87,7 @@ public class ListTripsForCustomerActivity extends AppCompatActivity {
         dateFromParse= new ArrayList<>();
 
 
+
         postActivityForCustomer = new PostActivityForCustomer(objectId,fromFromParse,whereFromParse,dateFromParse,this);
 
         listViewCustomer.setAdapter(postActivityForCustomer);
