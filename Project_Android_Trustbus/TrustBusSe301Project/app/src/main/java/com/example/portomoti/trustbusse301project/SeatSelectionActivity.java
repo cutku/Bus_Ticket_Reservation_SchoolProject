@@ -31,15 +31,15 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
     Button checkOut;
     String objectIdFromBack;
 
-    String seats = "AA____AA/"
+    String seats = "AA____AU/"
                  + "AA____AA/"
                  + "AA____AA/"
                  + "AA____AA/"
                  + "AA____AA/"
-                 + "UU____AA/"
                  + "AA____AA/"
                  + "AA____AA/"
-                 + "UU____AA/"
+                 + "AA____AA/"
+                 + "AA____AA/"
                  + "AA____AA/"
                  + "AA____AA/"
                  + "_______/";
@@ -163,13 +163,14 @@ checkOut.setOnClickListener(new View.OnClickListener() {
 
 
 
-
-        Intent i=new Intent(getApplicationContext(),PaymentActivity.class);
-        int lastAvaibleSeats= seatSizeFromDatabase;
-        i.putExtra("STRING_I_NEED_02",lastAvaibleSeats);
-        i.putExtra("STRING_I_NEED_01",totalCost);
-        i.putExtra("STRING_I_NEED_03",objectIdFromBack);
-        startActivity(i);
+        if (seatSizeFromDatabase>0) {
+            Intent i = new Intent(getApplicationContext(), PaymentActivity.class);
+            int lastAvaibleSeats = seatSizeFromDatabase;
+            i.putExtra("STRING_I_NEED_02", lastAvaibleSeats);
+            i.putExtra("STRING_I_NEED_01", totalCost);
+            i.putExtra("STRING_I_NEED_03", objectIdFromBack);
+            startActivity(i);
+        }
     }
     }
 });
@@ -275,7 +276,9 @@ checkOut.setOnClickListener(new View.OnClickListener() {
 
                     Toast.makeText(getApplicationContext(),"Not Enough Avaible Seat(s)",Toast.LENGTH_SHORT).show();
                 }
+                if(seatSizeFromDatabase>0){
                 seatSizeFromDatabase--;
+                }
                 currentCapacity.setText(""+seatSizeFromDatabase);
                 totalCost=basePrice*numberOfSelectedSeat;
                 totalPrice.setText(""+totalCost);
