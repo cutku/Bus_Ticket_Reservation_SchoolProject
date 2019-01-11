@@ -24,8 +24,10 @@ public class PaymentActivity extends AppCompatActivity {
 
     //String objectId = getIntent().getStringExtra("objectId");
     Button buy;
-    TextView cardnumber,cvc,name,surname;
+    TextView cardnumber,cvc,name,surname,costInt;
     String newString, objectFrom, objectWhere,objectDate;
+    int getCostIntent;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,12 +38,17 @@ public class PaymentActivity extends AppCompatActivity {
         cvc= findViewById(R.id.activityPaymentCVC);
         surname = findViewById(R.id.activityPaymentSurname);
         name = findViewById(R.id.activityPaymentName);
+        costInt = findViewById(R.id.ActivityPaymentTextView);
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
                 newString= null;
             } else {
+                getCostIntent= extras.getInt("STRING_I_NEED_01");
+
+                costInt.setText("↓"+String.valueOf(getCostIntent)+"$",TextView.BufferType.EDITABLE);
+
                 newString= extras.getString("STRING_I_NEED");
 
                 ParseQuery<ParseObject> queryN = ParseQuery.getQuery("Trips");
