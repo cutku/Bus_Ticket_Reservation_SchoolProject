@@ -8,6 +8,7 @@ import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,9 +26,9 @@ import java.util.List;
 public class SeatSelectionActivity extends AppCompatActivity implements View.OnClickListener {
 
     ViewGroup layout;
-    TextView numberOfSelectedSeatsText,totalPrice;
+    TextView numberOfSelectedSeatsText,totalPrice,currentCapacity;
     int numberOfSelectedSeat=0;
-
+    Button checkOut;
 
     String seats = "AA____AA/"
                  + "AA____AA/"
@@ -60,9 +61,15 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_seat_selection);
+
+
         totalPrice=findViewById(R.id.textViewTotalPrice);
         layout = findViewById(R.id.layoutSeat);
         numberOfSelectedSeatsText=findViewById(R.id.textViewSelectedSeatsNumber);
+        checkOut=findViewById(R.id.buyButton);
+        currentCapacity=findViewById(R.id.currentCapacityTextView);
+
+
         seats = "/" + seats;
 
         LinearLayout layoutSeat = new LinearLayout(this);
@@ -120,6 +127,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
                             e.printStackTrace();
                         } else {
                             object.put("seatSizeFromDatabase",seatSize);
+                            currentCapacity.setText(""+seatSizeFromDatabase);
                             System.out.println("obj puttet klajdklsjaskld===" + seatSizeFromDatabase);
                         }
                     }
@@ -128,6 +136,7 @@ public class SeatSelectionActivity extends AppCompatActivity implements View.OnC
         } else {
             newStringSeatSelection= (String) savedInstanceState.getSerializable("STRING_I_NEED");
         }
+
 
 
 
