@@ -141,7 +141,7 @@ checkOut.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
 
-    if((totalCost>=basePrice) && (numberOfSelectedSeat>0) && (numberOfSelectedSeat>4)){
+    if((totalCost<basePrice) ||   (numberOfSelectedSeat>4)){
         Toast.makeText(getApplicationContext(), ""+numberOfSelectedSeat+" seat selected !!", Toast.LENGTH_LONG).show();
     }else {
 
